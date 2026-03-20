@@ -1,0 +1,50 @@
+<div class="p-8 max-w-7xl mx-auto space-y-8">
+  <div class="flex justify-between items-end mb-8">
+    <div>
+      <h2 class="text-3xl font-extrabold font-headline text-on-surface tracking-tight">Products & Charges</h2>
+      <p class="text-on-surface-variant mt-2 max-w-md">Configure service tier limits, transaction fees, and operational limits.</p>
+    </div>
+    <button class="bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold flex items-center space-x-2 shadow-sm hover:translate-y-[-1px] transition-all">
+      <span class="material-symbols-outlined text-[20px]">add</span>
+      <span>Create Profile</span>
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Tier Profile 1 -->
+    <div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl overflow-hidden shadow-sm">
+      <div class="bg-surface-container-low/50 border-b border-surface-variant/30 p-6 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">workspace_premium</span>
+          </div>
+          <div>
+            <h3 class="font-bold text-on-surface text-lg">Standard Merchant Tier</h3>
+            <p class="text-xs text-on-surface-variant">Default SME profile</p>
+          </div>
+        </div>
+        <span class="px-2.5 py-1 bg-secondary-container/50 text-on-secondary-container text-xs font-bold rounded border border-secondary/20">ACTIVE (312 Orgs)</span>
+      </div>
+      <div class="p-6 space-y-4">
+        <div class="flex justify-between items-end border-b border-surface-variant/30 pb-4">
+          <div>
+            <p class="text-xs text-on-surface-variant uppercase tracking-wider font-bold mb-1">Max Daily Transfer</p>
+            <p class="font-mono text-xl text-on-surface font-semibold">KES 1,000,000</p>
+          </div>
+          <button class="text-primary hover:bg-primary/5 p-1.5 rounded"><span class="material-symbols-outlined">edit</span></button>
+        </div>
+        <div class="flex justify-between items-end border-b border-surface-variant/30 pb-4">
+          <div>
+            <p class="text-xs text-on-surface-variant uppercase tracking-wider font-bold mb-1">Standard Transaction Fee</p>
+            <p class="font-mono text-xl text-on-surface font-semibold">1.5% + KES 10</p>
+          </div>
+          <button class="text-primary hover:bg-primary/5 p-1.5 rounded"><span class="material-symbols-outlined">edit</span></button>
+        </div>
+        <div class="pt-2 flex justify-between">
+            <button class="text-error text-sm font-bold flex items-center gap-1 hover:underline"><span class="material-symbols-outlined text-[16px]">warning</span> Deactivate Tier</button>
+            <button class="text-primary text-sm font-bold">View Assigned Organizations</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

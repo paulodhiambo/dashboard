@@ -1,0 +1,115 @@
+<div class="px-6 py-8 pb-12">
+  <header class="mb-8">
+    <h1 class="text-3xl font-headline font-extrabold text-on-surface tracking-tight mb-2">Service Request Queue</h1>
+    <p class="text-on-surface-variant font-medium">Manage and review pending registration and change requests across the platform.</p>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+    <div class="bg-surface-container border border-outline-variant p-6 rounded-xl flex flex-col justify-between shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined text-3xl">person_add</span>
+        </div>
+        <span class="text-xs font-bold px-2 py-1 bg-primary-container text-on-primary-container rounded">ACTIVE QUEUE</span>
+      </div>
+      <div>
+        <h3 class="text-on-surface-variant text-sm font-bold uppercase tracking-wider mb-1">Pending Users</h3>
+        <p class="text-4xl font-headline font-black text-on-surface">12</p>
+      </div>
+      <div class="mt-4 flex items-center gap-2 text-primary text-xs font-bold">
+        <span class="material-symbols-outlined text-sm">trending_up</span>
+        <span>+4 from yesterday</span>
+      </div>
+    </div>
+
+    <div class="bg-surface-container border border-outline-variant p-6 rounded-xl flex flex-col justify-between shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+          <span class="material-symbols-outlined text-3xl">domain</span>
+        </div>
+        <span class="text-xs font-bold px-2 py-1 bg-tertiary-container text-on-tertiary-container rounded">PRIORITY</span>
+      </div>
+      <div>
+        <h3 class="text-on-surface-variant text-sm font-bold uppercase tracking-wider mb-1">Pending Organizations</h3>
+        <p class="text-4xl font-headline font-black text-on-surface">05</p>
+      </div>
+      <div class="mt-4 flex items-center gap-2 text-neutral-500 text-xs font-bold">
+        <span class="material-symbols-outlined text-sm">horizontal_rule</span>
+        <span>No change</span>
+      </div>
+    </div>
+
+    <div class="bg-surface-container border border-outline-variant p-6 rounded-xl flex flex-col justify-between shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+          <span class="material-symbols-outlined text-3xl">point_of_sale</span>
+        </div>
+        <span class="text-xs font-bold px-2 py-1 bg-secondary-container text-on-secondary-container rounded">TERMINAL</span>
+      </div>
+      <div>
+        <h3 class="text-on-surface-variant text-sm font-bold uppercase tracking-wider mb-1">Pending Tills</h3>
+        <p class="text-4xl font-headline font-black text-on-surface">28</p>
+      </div>
+      <div class="mt-4 flex items-center gap-2 text-error text-xs font-bold">
+        <span class="material-symbols-outlined text-sm">warning</span>
+        <span>High volume warning</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+    <div class="p-4 border-b border-outline-variant flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div class="flex items-center gap-1 bg-surface-container-low p-1 rounded-lg">
+        <button class="px-4 py-2 text-sm font-bold bg-primary text-on-primary rounded-md shadow-sm">All</button>
+        <button class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-md">User Requests</button>
+        <button class="px-4 py-2 text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-md">Organization Requests</button>
+      </div>
+      <div class="flex items-center gap-3">
+         <button class="flex items-center gap-2 px-3 py-2 border border-outline-variant rounded-lg text-sm font-semibold hover:bg-slate-50">
+          <span class="material-symbols-outlined text-lg">filter_list</span> Filters
+        </button>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-surface-container-lowest border-b border-outline-variant">
+            <th class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest">Request ID</th>
+            <th class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest">Type</th>
+            <th class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest">Action</th>
+            <th class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest">Initiated By</th>
+            <th class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest">Status</th>
+            <th class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-outline-variant">
+          <tr class="hover:bg-primary/5 transition-colors">
+            <td class="px-6 py-4 whitespace-nowrap font-mono text-sm text-on-surface">#REQ-89201</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="flex items-center gap-2 text-sm font-semibold">
+                <span class="material-symbols-outlined text-primary text-base">person</span> User
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 py-0.5 text-[10px] font-bold bg-secondary-container text-on-secondary-container rounded uppercase">Create</span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex flex-col">
+                <span class="text-sm font-bold text-on-surface">Sarah Mitchell</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="flex items-center gap-1.5 text-xs font-bold text-tertiary">
+                <span class="w-2 h-2 rounded-full bg-tertiary"></span> Pending
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-right">
+              <button class="px-4 py-1.5 bg-primary text-on-primary text-xs font-bold rounded shadow-sm hover:brightness-110 active:scale-95 transition-transform">Review</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

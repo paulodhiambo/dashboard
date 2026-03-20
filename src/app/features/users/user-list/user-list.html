@@ -1,0 +1,144 @@
+<div class="p-8 max-w-7xl mx-auto space-y-8">
+  <div class="flex justify-between items-end mb-8">
+    <div>
+      <h2 class="text-3xl font-extrabold font-headline text-on-surface tracking-tight">User Management</h2>
+      <p class="text-on-surface-variant mt-2 max-w-md">Oversee portal users and manage access roles across your organization.</p>
+    </div>
+    <button routerLink="add" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold flex items-center space-x-2 shadow-sm hover:translate-y-[-1px] transition-all">
+      <span class="material-symbols-outlined text-[20px]">person_add</span>
+      <span>Add New User</span>
+    </button>
+  </div>
+
+  <!-- Key Metrics Bento Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+    <div class="metric-card">
+      <div>
+        <p class="text-sm font-medium text-outline">Total Users</p>
+        <p class="text-4xl font-extrabold font-headline mt-1 text-on-surface">156</p>
+      </div>
+      <div class="bg-primary/10 p-3 rounded-full text-primary">
+        <span class="material-symbols-outlined filled">group</span>
+      </div>
+    </div>
+    
+    <div class="metric-card">
+      <div>
+        <p class="text-sm font-medium text-outline">Pending Approvals</p>
+        <p class="text-4xl font-extrabold font-headline mt-1 text-tertiary">8</p>
+      </div>
+      <div class="bg-tertiary/10 p-3 rounded-full text-tertiary">
+        <span class="material-symbols-outlined filled">pending_actions</span>
+      </div>
+    </div>
+    
+    <div class="metric-card">
+      <div>
+        <p class="text-sm font-medium text-outline">Recently Active</p>
+        <p class="text-4xl font-extrabold font-headline mt-1 text-secondary">42</p>
+      </div>
+      <div class="bg-secondary/10 p-3 rounded-full text-secondary">
+        <span class="material-symbols-outlined filled">bolt</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Section -->
+  <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-surface-variant/20">
+    <div class="px-6 py-4 border-b border-surface-variant/20 flex justify-between items-center bg-surface-container-low/30">
+      <h3 class="font-bold text-on-surface">Registered Portal Users</h3>
+      <div class="flex items-center space-x-2">
+        <button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+          <span class="material-symbols-outlined text-[20px]">filter_list</span>
+        </button>
+        <button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+          <span class="material-symbols-outlined text-[20px]">download</span>
+        </button>
+      </div>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left">
+        <thead>
+          <tr class="bg-surface-container-low text-xs font-bold uppercase tracking-widest text-outline">
+            <th class="px-6 py-4">Name</th>
+            <th class="px-6 py-4">Username</th>
+            <th class="px-6 py-4">Email</th>
+            <th class="px-6 py-4">Role</th>
+            <th class="px-6 py-4">Country</th>
+            <th class="px-6 py-4">Status</th>
+            <th class="px-6 py-4 text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-surface-variant/20 text-sm">
+          <tr class="hover:bg-surface-container-low/40 transition-colors group">
+            <td class="px-6 py-4 font-semibold">Alexander Pierce</td>
+            <td class="px-6 py-4 text-on-surface-variant">apierce_sv</td>
+            <td class="px-6 py-4 text-on-surface-variant">a.pierce&#64;vault.com</td>
+            <td class="px-6 py-4">
+              <span class="px-2 py-1 bg-secondary-container text-on-secondary-container text-[11px] font-bold rounded">BRANCH_MAKER</span>
+            </td>
+            <td class="px-6 py-4">United Kingdom</td>
+            <td class="px-6 py-4">
+              <div class="status-active">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span> Active
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <div class="flex justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+                <button class="p-1 text-outline hover:text-error"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="hover:bg-surface-container-low/40 transition-colors group">
+            <td class="px-6 py-4 font-semibold">Sarah Jenkins</td>
+            <td class="px-6 py-4 text-on-surface-variant">sjenkins_ops</td>
+            <td class="px-6 py-4 text-on-surface-variant">s.jenkins&#64;vault.com</td>
+            <td class="px-6 py-4">
+              <span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-[11px] font-bold rounded">BRANCH_CHECKER</span>
+            </td>
+            <td class="px-6 py-4">Singapore</td>
+            <td class="px-6 py-4">
+              <div class="status-pending">
+                <span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-2"></span> Pending Approval
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <div class="flex justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+                <button class="p-1 text-outline hover:text-error"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="hover:bg-surface-container-low/40 transition-colors group">
+            <td class="px-6 py-4 font-semibold">Michael Chen</td>
+            <td class="px-6 py-4 text-on-surface-variant">mchen_admin</td>
+            <td class="px-6 py-4 text-on-surface-variant">m.chen&#64;vault.com</td>
+            <td class="px-6 py-4">
+              <span class="px-2 py-1 bg-secondary-container text-on-secondary-container text-[11px] font-bold rounded">USER_MAKER</span>
+            </td>
+            <td class="px-6 py-4">Canada</td>
+            <td class="px-6 py-4">
+              <div class="status-active">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span> Active
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <div class="flex justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+                <button class="p-1 text-outline hover:text-error"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="px-6 py-4 bg-surface-container-low/10 flex justify-between items-center text-xs font-medium text-outline">
+      <span>Showing 3 of 156 users</span>
+      <div class="flex items-center space-x-2">
+        <button class="px-3 py-1 bg-white border border-surface-variant/30 rounded shadow-sm disabled:opacity-50" disabled>Previous</button>
+        <button class="px-3 py-1 bg-white border border-surface-variant/30 rounded shadow-sm hover:bg-surface-container transition-colors">Next</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="p-8 max-w-7xl mx-auto space-y-8">
+  <div class="flex justify-between items-end mb-8">
+    <div>
+      <h2 class="text-3xl font-extrabold font-headline text-on-surface tracking-tight">Organizations</h2>
+      <p class="text-on-surface-variant mt-2 max-w-md">Manage registered organizations and their associated branch networks.</p>
+    </div>
+    <button routerLink="new" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold flex items-center space-x-2 shadow-sm hover:translate-y-[-1px] transition-all">
+      <span class="material-symbols-outlined text-[20px]">add_business</span>
+      <span>Onboard Organization</span>
+    </button>
+  </div>
+
+  <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-surface-variant/20">
+    <div class="px-6 py-4 border-b border-surface-variant/20 flex justify-between items-center bg-surface-container-low/30">
+      <h3 class="font-bold text-on-surface">Registered Organizations</h3>
+      <div class="flex items-center space-x-2">
+        <button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+          <span class="material-symbols-outlined text-[20px]">filter_list</span>
+        </button>
+        <button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+          <span class="material-symbols-outlined text-[20px]">download</span>
+        </button>
+      </div>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left">
+        <thead>
+          <tr class="bg-surface-container-low text-xs font-bold uppercase tracking-widest text-outline">
+            <th class="px-6 py-4">Org Name</th>
+            <th class="px-6 py-4">Registration #</th>
+            <th class="px-6 py-4">Branches</th>
+            <th class="px-6 py-4">Country</th>
+            <th class="px-6 py-4">Status</th>
+            <th class="px-6 py-4 text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-surface-variant/20 text-sm">
+          <!-- Row 1 -->
+          <tr class="hover:bg-surface-container-low/40 transition-colors group">
+            <td class="px-6 py-4 font-semibold">Acme Trading Co.</td>
+            <td class="px-6 py-4 text-on-surface-variant font-mono text-xs">REG-9021-KE</td>
+            <td class="px-6 py-4">
+              <span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-[11px] font-bold rounded">12 LOCATIONS</span>
+            </td>
+            <td class="px-6 py-4">Kenya</td>
+            <td class="px-6 py-4">
+              <div class="status-active">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span> Active
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <div class="flex justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+              </div>
+            </td>
+          </tr>
+          <!-- Row 2 -->
+          <tr class="hover:bg-surface-container-low/40 transition-colors group">
+            <td class="px-6 py-4 font-semibold">Global Retail Group</td>
+            <td class="px-6 py-4 text-on-surface-variant font-mono text-xs">REG-4451-ZA</td>
+            <td class="px-6 py-4">
+              <span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-[11px] font-bold rounded">4 LOCATIONS</span>
+            </td>
+            <td class="px-6 py-4">South Africa</td>
+            <td class="px-6 py-4">
+              <div class="status-active">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span> Active
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <div class="flex justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+              </div>
+            </td>
+          </tr>
+          <!-- Row 3 -->
+          <tr class="hover:bg-surface-container-low/40 transition-colors group">
+            <td class="px-6 py-4 font-semibold">Swift Delivery Logistics</td>
+            <td class="px-6 py-4 text-on-surface-variant font-mono text-xs">REG-1102-NG</td>
+            <td class="px-6 py-4">
+              <span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-[11px] font-bold rounded">1 LOCATION</span>
+            </td>
+            <td class="px-6 py-4">Nigeria</td>
+            <td class="px-6 py-4">
+              <div class="status-pending">
+                <span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-2"></span> Pending Review
+              </div>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <div class="flex justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="px-6 py-4 bg-surface-container-low/10 flex justify-between items-center text-xs font-medium text-outline">
+      <span>Showing 3 of 412 organizations</span>
+      <div class="flex items-center space-x-2">
+        <button class="px-3 py-1 bg-white border border-surface-variant/30 rounded shadow-sm disabled:opacity-50" disabled>Previous</button>
+        <button class="px-3 py-1 bg-white border border-surface-variant/30 rounded shadow-sm hover:bg-surface-container transition-colors">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
