@@ -30,11 +30,8 @@ import { Component } from '@angular/core';
         </div>
         <div class="h-6 w-px bg-slate-200"></div>
         <button class="text-sm font-bold text-slate-600 hover:text-green-700 transition-colors">Support</button>
-        <button class="bg-primary text-white px-5 py-2 rounded-lg text-sm font-bold shadow-sm hover:brightness-110 transition-all active:scale-95">
-          New Request
-        </button>
       </div>
     </header>
   `,
 })
-export class TopnavComponent {}
+export class TopnavComponent { }

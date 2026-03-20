@@ -1,144 +1,390 @@
-<div class="p-8 max-w-7xl mx-auto space-y-8">
-  <div class="flex justify-between items-end mb-8">
+<div class="px-6 py-8 pb-12 max-w-[1600px] mx-auto">
+  <!-- Header Area -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
     <div>
-      <h2 class="text-3xl font-extrabold font-headline text-on-surface tracking-tight">User Management</h2>
-      <p class="text-on-surface-variant mt-2 max-w-md">Oversee portal users and manage access roles across your organization.</p>
+      <h2 class="text-3xl font-extrabold font-headline text-on-surface tracking-tight mb-2">User Management</h2>
+      <p class="text-on-surface-variant max-w-xl font-medium">Coordinate access control, oversee role assignments, and
+        manage portal activity for all enterprise administrators.</p>
     </div>
-    <button routerLink="add" class="bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold flex items-center space-x-2 shadow-sm hover:translate-y-[-1px] transition-all">
+    <button routerLink="add"
+      class="bg-primary text-on-primary px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-sm hover:translate-y-[-2px] hover:shadow-md transition-all active:scale-95">
       <span class="material-symbols-outlined text-[20px]">person_add</span>
       <span>Add New User</span>
     </button>
   </div>
 
   <!-- Key Metrics Bento Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-    <div class="metric-card">
-      <div>
-        <p class="text-sm font-medium text-outline">Total Users</p>
-        <p class="text-4xl font-extrabold font-headline mt-1 text-on-surface">156</p>
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+    <div
+      class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex items-center justify-between mb-2">
+        <p class="text-sm font-bold text-outline uppercase tracking-widest">Total Users</p>
+        <div class="bg-primary/10 p-2 rounded-xl text-primary"><span
+            class="material-symbols-outlined text-[20px]">group</span></div>
       </div>
-      <div class="bg-primary/10 p-3 rounded-full text-primary">
-        <span class="material-symbols-outlined filled">group</span>
-      </div>
-    </div>
-    
-    <div class="metric-card">
-      <div>
-        <p class="text-sm font-medium text-outline">Pending Approvals</p>
-        <p class="text-4xl font-extrabold font-headline mt-1 text-tertiary">8</p>
-      </div>
-      <div class="bg-tertiary/10 p-3 rounded-full text-tertiary">
-        <span class="material-symbols-outlined filled">pending_actions</span>
+      <p class="text-4xl font-extrabold font-headline text-on-surface">156</p>
+      <div class="mt-3 flex items-center gap-1.5 text-xs font-bold text-primary">
+        <span class="material-symbols-outlined text-[16px]">trending_up</span>
+        <span>+12% this month</span>
       </div>
     </div>
-    
-    <div class="metric-card">
-      <div>
-        <p class="text-sm font-medium text-outline">Recently Active</p>
-        <p class="text-4xl font-extrabold font-headline mt-1 text-secondary">42</p>
+
+    <div
+      class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex items-center justify-between mb-2">
+        <p class="text-sm font-bold text-outline uppercase tracking-widest">Pending</p>
+        <div class="bg-tertiary/10 p-2 rounded-xl text-tertiary"><span
+            class="material-symbols-outlined text-[20px]">hourglass_empty</span></div>
       </div>
-      <div class="bg-secondary/10 p-3 rounded-full text-secondary">
-        <span class="material-symbols-outlined filled">bolt</span>
+      <p class="text-4xl font-extrabold font-headline text-tertiary">8</p>
+      <div class="mt-3 flex items-center gap-1.5 text-xs font-bold text-tertiary">
+        <span class="material-symbols-outlined text-[16px]">priority</span>
+        <span>Action required</span>
+      </div>
+    </div>
+
+    <div
+      class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex items-center justify-between mb-2">
+        <p class="text-sm font-bold text-outline uppercase tracking-widest">Sys Admins</p>
+        <div class="bg-error/10 p-2 rounded-xl text-error"><span
+            class="material-symbols-outlined text-[20px]">admin_panel_settings</span></div>
+      </div>
+      <p class="text-4xl font-extrabold font-headline text-on-surface">4</p>
+      <div class="mt-3 flex items-center gap-1.5 text-xs font-bold text-outline">
+        <span class="material-symbols-outlined text-[16px]">security</span>
+        <span>Root privileges</span>
+      </div>
+    </div>
+
+    <div
+      class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex items-center justify-between mb-2">
+        <p class="text-sm font-bold text-outline uppercase tracking-widest">Active Today</p>
+        <div class="bg-secondary/10 p-2 rounded-xl text-secondary"><span
+            class="material-symbols-outlined text-[20px]">bolt</span></div>
+      </div>
+      <p class="text-4xl font-extrabold font-headline text-on-surface">42</p>
+      <div class="mt-3 flex items-center gap-1.5 text-xs font-bold text-secondary">
+        <span class="w-2 h-2 rounded-full bg-secondary"></span>
+        <span>Currently online</span>
       </div>
     </div>
   </div>
 
-  <!-- Table Section -->
-  <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-surface-variant/20">
-    <div class="px-6 py-4 border-b border-surface-variant/20 flex justify-between items-center bg-surface-container-low/30">
-      <h3 class="font-bold text-on-surface">Registered Portal Users</h3>
-      <div class="flex items-center space-x-2">
-        <button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
-          <span class="material-symbols-outlined text-[20px]">filter_list</span>
+  <!-- Main Table Section -->
+  <div class="bg-white border border-outline-variant rounded-2xl shadow-sm flex flex-col min-h-[500px]">
+
+    <!-- Controls Layout -->
+    <div
+      class="p-5 border-b border-outline-variant flex flex-col xl:flex-row xl:items-center justify-between gap-4 bg-surface-container-lowest rounded-t-2xl">
+      <!-- Tabs -->
+      <div class="flex items-center gap-1 bg-surface-container-low p-1.5 rounded-lg overflow-x-auto scroolbar-hide">
+        <button (click)="setFilter('All')" class="px-5 py-2 text-sm rounded-md transition-all whitespace-nowrap"
+          [class.bg-white]="filter === 'All'" [class.text-on-surface]="filter === 'All'"
+          [class.font-bold]="filter === 'All'" [class.shadow-sm]="filter === 'All'"
+          [class.text-on-surface-variant]="filter !== 'All'" [class.font-medium]="filter !== 'All'"
+          [class.hover:bg-surface-variant/30]="filter !== 'All'">
+          All Users
         </button>
-        <button class="p-2 hover:bg-surface-container rounded-lg transition-colors">
+        <button (click)="setFilter('Branch Maker')" class="px-5 py-2 text-sm rounded-md transition-all whitespace-nowrap"
+          [class.bg-white]="filter === 'Branch Maker'" [class.text-on-surface]="filter === 'Branch Maker'"
+          [class.font-bold]="filter === 'Branch Maker'" [class.shadow-sm]="filter === 'Branch Maker'"
+          [class.text-on-surface-variant]="filter !== 'Branch Maker'" [class.font-medium]="filter !== 'Branch Maker'"
+          [class.hover:bg-surface-variant/30]="filter !== 'Branch Maker'">
+          Branch Maker
+        </button>
+        <button (click)="setFilter('Branch Checker')" class="px-5 py-2 text-sm rounded-md transition-all whitespace-nowrap"
+          [class.bg-white]="filter === 'Branch Checker'" [class.text-on-surface]="filter === 'Branch Checker'"
+          [class.font-bold]="filter === 'Branch Checker'" [class.shadow-sm]="filter === 'Branch Checker'"
+          [class.text-on-surface-variant]="filter !== 'Branch Checker'" [class.font-medium]="filter !== 'Branch Checker'"
+          [class.hover:bg-surface-variant/30]="filter !== 'Branch Checker'">
+          Branch Checker
+        </button>
+        <button (click)="setFilter('User Maker')" class="px-5 py-2 text-sm rounded-md transition-all whitespace-nowrap"
+          [class.bg-white]="filter === 'User Maker'" [class.text-on-surface]="filter === 'User Maker'"
+          [class.font-bold]="filter === 'User Maker'" [class.shadow-sm]="filter === 'User Maker'"
+          [class.text-on-surface-variant]="filter !== 'User Maker'" [class.font-medium]="filter !== 'User Maker'"
+          [class.hover:bg-surface-variant/30]="filter !== 'User Maker'">
+          User Maker
+        </button>
+
+        <button (click)="setFilter('User Checker')" class="px-5 py-2 text-sm rounded-md transition-all whitespace-nowrap"
+          [class.bg-white]="filter === 'User Checker'" [class.text-on-surface]="filter === 'User Checker'"
+          [class.font-bold]="filter === 'User Checker'" [class.shadow-sm]="filter === 'User Checker'"
+          [class.text-on-surface-variant]="filter !== 'User Checker'" [class.font-medium]="filter !== 'User Checker'"
+          [class.hover:bg-surface-variant/30]="filter !== 'User Checker'">
+          User Checker
+        </button>
+      </div>
+
+      <!-- Actions & Search -->
+      <div class="flex items-center gap-3 w-full xl:w-auto">
+        <div class="relative w-full xl:w-80">
+          <span
+            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+          <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()"
+            placeholder="Search by name, email, or username..."
+            class="w-full pl-10 pr-4 py-2.5 text-sm border border-outline-variant rounded-xl bg-surface-container-lowest focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+        </div>
+        <button
+          class="flex items-center gap-2 px-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-xl text-sm font-bold text-on-surface hover:bg-surface-container transition-colors shrink-0">
+          <span class="material-symbols-outlined text-[20px]">tune</span> Filter
+        </button>
+        <button
+          class="flex items-center justify-center p-2.5 bg-surface-container-low border border-outline-variant rounded-xl text-on-surface hover:bg-surface-container transition-colors shrink-0"
+          title="Export List">
           <span class="material-symbols-outlined text-[20px]">download</span>
         </button>
       </div>
     </div>
-    <div class="overflow-x-auto">
-      <table class="w-full text-left">
+
+    <!-- Table content -->
+    <div class="overflow-x-auto flex-1">
+      <table class="w-full text-left border-collapse">
         <thead>
-          <tr class="bg-surface-container-low text-xs font-bold uppercase tracking-widest text-outline">
-            <th class="px-6 py-4">Name</th>
-            <th class="px-6 py-4">Username</th>
-            <th class="px-6 py-4">Email</th>
-            <th class="px-6 py-4">Role</th>
-            <th class="px-6 py-4">Country</th>
-            <th class="px-6 py-4">Status</th>
-            <th class="px-6 py-4 text-right">Actions</th>
+          <tr class="bg-surface-container-lowest border-b border-outline-variant">
+            <th
+              class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest whitespace-nowrap">
+              User Detail</th>
+            <th
+              class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest whitespace-nowrap">
+              Role Status</th>
+            <th
+              class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest whitespace-nowrap">
+              Regional Info</th>
+            <th
+              class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest text-right whitespace-nowrap">
+              Actions</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-surface-variant/20 text-sm">
-          <tr class="hover:bg-surface-container-low/40 transition-colors group">
-            <td class="px-6 py-4 font-semibold">Alexander Pierce</td>
-            <td class="px-6 py-4 text-on-surface-variant">apierce_sv</td>
-            <td class="px-6 py-4 text-on-surface-variant">a.pierce&#64;vault.com</td>
-            <td class="px-6 py-4">
-              <span class="px-2 py-1 bg-secondary-container text-on-secondary-container text-[11px] font-bold rounded">BRANCH_MAKER</span>
-            </td>
-            <td class="px-6 py-4">United Kingdom</td>
-            <td class="px-6 py-4">
-              <div class="status-active">
-                <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span> Active
+        <tbody class="divide-y divide-outline-variant">
+          @for (user of pagedUsers; track user.id) {
+          <tr class="hover:bg-primary/5 transition-colors group fade-in">
+            <!-- Name & Email (Combined Column for cleaner UI) -->
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold shadow-inner">
+                  {{ user.name.charAt(0) }}
+                </div>
+                <div>
+                  <h4 class="font-bold text-on-surface text-sm mb-0.5">{{ user.name }}</h4>
+                  <div class="flex items-center gap-2 text-xs">
+                    <span class="font-mono text-outline font-semibold">@{{ user.username }}</span>
+                    <span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+                    <span class="text-on-surface-variant">{{ user.email }}</span>
+                  </div>
+                </div>
               </div>
             </td>
-            <td class="px-6 py-4 text-right">
-              <div class="flex justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-                <button class="p-1 text-outline hover:text-error"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+            <!-- Role inside Badge -->
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex flex-col items-start gap-2">
+                <span
+                  class="px-2.5 py-1 text-[10px] font-bold rounded-md uppercase border tracking-wider flex items-center gap-1"
+                  [ngClass]="getRoleColorClass(user.role)">
+                  <span class="material-symbols-outlined text-[14px]">
+                    {{ user.role === 'USER_CHECKER' ? 'shield_person' : 'badge' }}
+                  </span>
+                  {{ user.role.replace('_', ' ') }}
+                </span>
+                <div class="flex items-center gap-1.5 text-xs font-semibold px-2 py-0.5 rounded-full"
+                  [ngClass]="getStatusColorClass(user.status)">
+                  <span class="material-symbols-outlined text-[14px]">{{ getStatusIcon(user.status) }}</span>
+                  <span>{{ user.status }}</span>
+                </div>
+              </div>
+            </td>
+            <!-- Country & Activity -->
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex flex-col gap-1 text-sm">
+                <span class="font-medium text-on-surface flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-outline text-[18px]">public</span> {{ user.country }}
+                </span>
+                <span class="text-xs text-on-surface-variant flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-outline text-[16px]">history</span> {{ user.lastActive }}
+                </span>
+              </div>
+            </td>
+            <!-- Actions -->
+            <td class="px-6 py-4 whitespace-nowrap text-right">
+              <div *ngIf="user.status === 'Pending Approval'" class="flex justify-end items-center gap-2">
+                <!-- Review Button for Pending Users -->
+                <button (click)="openActionPanel(user)"
+                  class="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-tertiary/10 border border-tertiary/20 hover:bg-tertiary hover:border-tertiary text-tertiary hover:text-white transition-colors font-bold text-xs shadow-sm"
+                  title="Review User">
+                  <span class="material-symbols-outlined text-[16px]">fact_check</span> Review
+                </button>
               </div>
             </td>
           </tr>
-          <tr class="hover:bg-surface-container-low/40 transition-colors group">
-            <td class="px-6 py-4 font-semibold">Sarah Jenkins</td>
-            <td class="px-6 py-4 text-on-surface-variant">sjenkins_ops</td>
-            <td class="px-6 py-4 text-on-surface-variant">s.jenkins&#64;vault.com</td>
-            <td class="px-6 py-4">
-              <span class="px-2 py-1 bg-surface-variant text-on-surface-variant text-[11px] font-bold rounded">BRANCH_CHECKER</span>
-            </td>
-            <td class="px-6 py-4">Singapore</td>
-            <td class="px-6 py-4">
-              <div class="status-pending">
-                <span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-2"></span> Pending Approval
-              </div>
-            </td>
-            <td class="px-6 py-4 text-right">
-              <div class="flex justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-                <button class="p-1 text-outline hover:text-error"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+          }
+          @if (pagedUsers.length === 0) {
+          <tr>
+            <td colspan="4" class="px-6 py-16 text-center bg-surface-container-lowest">
+              <div class="flex flex-col items-center justify-center text-on-surface-variant max-w-sm mx-auto">
+                <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-4">
+                  <span class="material-symbols-outlined text-[32px] opacity-70 text-primary">person_search</span>
+                </div>
+                <p class="font-bold text-on-surface text-lg">No Users Found</p>
+                <p class="text-sm mt-2 font-medium">We couldn't find any users matching your applied filters or search
+                  query.</p>
+                <button (click)="setFilter('All'); searchTerm = ''; onSearchChange()"
+                  class="mt-4 px-4 py-2 font-bold text-sm text-primary hover:bg-primary-container rounded-lg transition-colors">Clear
+                  Filters</button>
               </div>
             </td>
           </tr>
-          <tr class="hover:bg-surface-container-low/40 transition-colors group">
-            <td class="px-6 py-4 font-semibold">Michael Chen</td>
-            <td class="px-6 py-4 text-on-surface-variant">mchen_admin</td>
-            <td class="px-6 py-4 text-on-surface-variant">m.chen&#64;vault.com</td>
-            <td class="px-6 py-4">
-              <span class="px-2 py-1 bg-secondary-container text-on-secondary-container text-[11px] font-bold rounded">USER_MAKER</span>
-            </td>
-            <td class="px-6 py-4">Canada</td>
-            <td class="px-6 py-4">
-              <div class="status-active">
-                <span class="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span> Active
-              </div>
-            </td>
-            <td class="px-6 py-4 text-right">
-              <div class="flex justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button class="p-1 text-outline hover:text-primary"><span class="material-symbols-outlined text-[18px]">edit</span></button>
-                <button class="p-1 text-outline hover:text-error"><span class="material-symbols-outlined text-[18px]">delete</span></button>
-              </div>
-            </td>
-          </tr>
+          }
         </tbody>
       </table>
     </div>
-    <div class="px-6 py-4 bg-surface-container-low/10 flex justify-between items-center text-xs font-medium text-outline">
-      <span>Showing 3 of 156 users</span>
-      <div class="flex items-center space-x-2">
-        <button class="px-3 py-1 bg-white border border-surface-variant/30 rounded shadow-sm disabled:opacity-50" disabled>Previous</button>
-        <button class="px-3 py-1 bg-white border border-surface-variant/30 rounded shadow-sm hover:bg-surface-container transition-colors">Next</button>
+
+    <!-- Pagination Footer -->
+    <div
+      class="px-6 py-4 border-t border-outline-variant bg-surface-container-lowest flex items-center justify-between rounded-b-2xl">
+      <div class="text-sm font-medium text-on-surface-variant">
+        Showing <span class="font-bold text-on-surface">{{ startIndexDisplay }}</span> to <span
+          class="font-bold text-on-surface">{{ endIndexDisplay }}</span> of <span class="font-bold text-on-surface">{{
+          totalFiltered }}</span> users
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button (click)="prevPage()" [disabled]="currentPage === 1"
+          class="flex items-center gap-1 pl-2 pr-3 py-1.5 rounded-lg border border-outline-variant font-bold text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-surface-container text-on-surface">
+          <span class="material-symbols-outlined text-[18px]">chevron_left</span> Prev
+        </button>
+
+        <div
+          class="flex items-center justify-center px-4 py-1.5 rounded-lg border border-outline-variant bg-surface text-sm font-bold text-on-surface group cursor-default">
+          {{ currentPage }}<span class="text-on-surface-variant font-medium mx-1">/</span>{{ totalPages || 1 }}
+        </div>
+
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages || totalPages === 0"
+          class="flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-lg border border-outline-variant font-bold text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-surface-container text-on-surface">
+          Next <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+        </button>
       </div>
     </div>
   </div>
+  <!-- Action Side Panel Overlay -->
+  @if (selectedUserForAction) {
+  <div class="fixed inset-0 bg-on-surface/20 z-40 backdrop-blur-sm transition-opacity"></div>
+  
+  <div class="fixed top-0 right-0 h-full w-full max-w-md bg-surface shadow-2xl z-50 flex flex-col transform transition-transform duration-300 border-l border-outline-variant animate-slide-in-right">
+    <!-- Header -->
+    <div class="p-6 border-b border-outline-variant flex items-center justify-between bg-surface-container-lowest">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-tertiary/10 text-tertiary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">fact_check</span>
+        </div>
+        <div>
+          <h3 class="font-bold text-lg text-on-surface">Review User</h3>
+          <p class="text-xs text-on-surface-variant">Evaluate pending access request</p>
+        </div>
+      </div>
+      <button (click)="closeActionPanel()" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-on-surface-variant transition-colors">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6 flex-grow overflow-y-auto space-y-6">
+      
+      <!-- User Summary Card -->
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-sm">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg shadow-inner">
+            {{ selectedUserForAction.name.charAt(0) }}
+          </div>
+          <div>
+            <h4 class="font-bold text-on-surface text-md">{{ selectedUserForAction.name }}</h4>
+            <p class="font-mono text-outline font-semibold text-xs mb-1">@{{ selectedUserForAction.username }}</p>
+            <span class="px-2.5 py-1 text-[10px] font-bold rounded-md uppercase border tracking-wider inline-flex items-center gap-1 mt-1"
+                [ngClass]="getRoleColorClass(selectedUserForAction.role)">
+                <span class="material-symbols-outlined text-[12px]">
+                  {{ selectedUserForAction.role === 'USER_CHECKER' ? 'shield_person' : 'badge' }}
+                </span>
+                {{ selectedUserForAction.role.replace('_', ' ') }}
+            </span>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-y-3 pt-3 border-t border-outline-variant text-sm">
+          <div>
+            <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-0.5">Location</p>
+            <p class="font-medium text-on-surface">{{ selectedUserForAction.country }}</p>
+          </div>
+          <div>
+            <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-0.5">Email</p>
+            <p class="font-medium text-on-surface truncate pr-2">{{ selectedUserForAction.email }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Form -->
+      <div>
+        <label class="block text-sm font-bold text-on-surface mb-2">Remarks / Reason</label>
+        <textarea [(ngModel)]="actionReason" rows="4" 
+          class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-4 text-sm focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 outline-none transition-all resize-none shadow-sm"
+          placeholder="Enter the reason for approval, rejection, or why an update is needed..."></textarea>
+      </div>
+      
+    </div>
+
+    <!-- Footer Actions -->
+    <div class="p-6 border-t border-outline-variant bg-surface-container mt-auto space-y-3">
+      <button (click)="submitAction('Approve')" class="w-full py-3 bg-primary text-white font-bold rounded-xl shadow-sm hover:bg-green-700 transition-all flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-[20px]">check_circle</span> Approve User
+      </button>
+      
+      <div class="grid grid-cols-2 gap-3">
+        <button (click)="submitAction('Request Update')" class="w-full py-3 bg-white border border-outline-variant text-on-surface font-bold rounded-xl shadow-sm hover:bg-surface-variant/30 transition-all flex items-center justify-center gap-2 text-sm">
+          <span class="material-symbols-outlined text-[18px]">update</span> Request Update
+        </button>
+        <button (click)="submitAction('Reject')" class="w-full py-3 bg-error/10 text-error border border-error/20 font-bold rounded-xl shadow-sm hover:bg-error hover:text-white transition-all flex items-center justify-center gap-2 text-sm">
+          <span class="material-symbols-outlined text-[18px]">cancel</span> Reject
+        </button>
+      </div>
+    </div>
+  </div>
+  }
 </div>
+
+<style>
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes slideInRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scrollbar hide for tabs list */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

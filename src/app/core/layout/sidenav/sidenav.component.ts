@@ -61,11 +61,11 @@ interface NavItem {
 })
 export class SidenavComponent {
   navItems: NavItem[] = [
-    { label: 'Overview', icon: 'dashboard', route: '/dashboard' },
+    { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
     { label: 'Organizations', icon: 'corporate_fare', route: '/organizations' },
     { label: 'Till Management', icon: 'point_of_sale', route: '/tills' },
     { label: 'Users', icon: 'group', route: '/users' },
-    { label: 'Approvals', icon: 'rule_folder', route: '/approvals' },
+    { label: 'Service Requests', icon: 'rule_folder', route: '/approvals' },
     { label: 'Products & Charges', icon: 'inventory_2', route: '/products' }
   ];
 }

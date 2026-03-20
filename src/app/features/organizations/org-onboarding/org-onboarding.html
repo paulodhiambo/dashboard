@@ -4,24 +4,18 @@
     <div class="mb-8">
       <div class="flex justify-between items-end mb-4">
         <div>
-          <h2 class="text-sm font-bold text-primary uppercase tracking-widest">Step {{ currentStep }} of 8</h2>
+          <h2 class="text-sm font-bold text-primary uppercase tracking-widest">Step {{ currentStep }} of 6</h2>
           <h3 class="text-3xl font-headline font-extrabold text-on-surface tracking-tight">{{ stepTitle }}</h3>
         </div>
         <span class="text-sm font-medium text-on-surface-variant">{{ progressPercentage }}% Complete</span>
       </div>
-      
-      <!-- Progress Bar -->
-      <div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden flex gap-1">
-        <div class="h-full bg-primary rounded-full transition-all duration-300" [style.width]="progressPercentage + '%'"></div>
-      </div>
-      
+
       <!-- Step Indicators -->
       <div class="flex mt-3 gap-2">
         @for (step of steps; track step; let i = $index) {
-          <div class="h-1 flex-1 rounded-full transition-colors duration-300"
-               [class.bg-primary]="i + 1 <= currentStep"
-               [class.bg-surface-variant]="i + 1 > currentStep">
-          </div>
+        <div class="h-1 flex-1 rounded-full transition-colors duration-300" [class.bg-primary]="i + 1 <= currentStep"
+          [class.bg-surface-variant]="i + 1 > currentStep">
+        </div>
         }
       </div>
     </div>
@@ -30,114 +24,845 @@
   <!-- Wizard Content Area -->
   <div class="flex-grow p-8 pt-0 max-w-5xl mx-auto w-full">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      
+
       <!-- Main Form Area -->
-      <div class="lg:col-span-8 bg-surface-container-lowest p-10 rounded-xl shadow-sm border border-outline-variant/30 flex flex-col justify-center min-h-[400px]">
-        
-        <!-- Step 1: Search Account (Mockup) -->
-        @if (currentStep === 1) {
-          <div class="max-w-md w-full mx-auto">
-            <label class="block text-sm font-bold text-on-surface-variant mb-3" for="bank_account">Enter Bank Account Number</label>
-            <div class="relative group">
-              <div class="absolute left-4 inset-y-0 flex items-center">
-                <span class="material-symbols-outlined text-outline">account_balance</span>
+      <div class="lg:col-span-12 flex flex-col min-h-[500px]">
+
+        <div
+          class="bg-surface-container-lowest p-10 rounded-2xl shadow-sm border border-outline-variant flex-grow flex flex-col relative overflow-hidden text-on-surface transition-all">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-10 -mt-20"></div>
+
+          <!-- Step 1: Search Account (Redesigned) -->
+          @if (currentStep === 1) {
+          <div class="max-w-xl w-full mx-auto flex-grow flex flex-col justify-center relative z-10 animate-fade-in">
+            <div class="text-center mb-10">
+              <div
+                class="w-20 h-20 bg-primary/10 rounded-3xl mx-auto flex items-center justify-center text-primary mb-6 shadow-sm transform -rotate-3 transition-transform hover:rotate-0">
+                <span class="material-symbols-outlined text-[36px]">travel_explore</span>
               </div>
-              <input class="w-full pl-12 pr-4 py-4 bg-surface text-lg font-headline font-semibold border-2 border-surface-variant rounded-lg focus:border-primary focus:ring-0 transition-all outline-none" id="bank_account" placeholder="e.g. 6600000368" type="text" />
+              <h3 class="text-2xl font-extrabold font-headline tracking-tight mb-2 text-on-surface">Find Organization
+              </h3>
+              <p class="text-on-surface-variant font-medium">Select a method to locate the organization in the banking
+                registry.</p>
             </div>
-            <p class="mt-3 text-xs text-on-surface-variant/70 italic">Please enter the 10-digit account number associated with your business registration.</p>
-          </div>
-        }
-        
-        <!-- Step 2: Account Details (Placeholder) -->
-        @if (currentStep === 2) {
-          <div class="max-w-md w-full mx-auto text-center space-y-4">
-            <div class="w-16 h-16 bg-primary-container/20 rounded-full mx-auto flex items-center justify-center text-primary">
-              <span class="material-symbols-outlined text-3xl">domain_verification</span>
-            </div>
-            <h4 class="text-xl font-bold">Account Found</h4>
-            <div class="bg-surface p-4 rounded-lg text-left border border-outline-variant/30">
-              <p class="text-xs text-on-surface-variant mb-1">Registered Entity</p>
-              <p class="font-bold text-lg">Atlas Trading Enterprises Ltd.</p>
-              <div class="h-px bg-outline-variant/30 my-3"></div>
-              <p class="text-xs text-on-surface-variant mb-1">Account Number</p>
-              <p class="font-mono font-bold">6600000368</p>
-            </div>
-          </div>
-        }
 
-        <!-- Other steps represented by placeholders for now -->
-        @if (currentStep > 2 && currentStep < 8) {
-          <div class="text-center text-on-surface-variant">
-            <span class="material-symbols-outlined text-4xl mb-2 opacity-50">construction</span>
-            <p>Step {{ currentStep }} Form Details go here</p>
-          </div>
-        }
+            <!-- Premium Radio Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+              <!-- Phone Number -->
+              <button (click)="searchType = 'phone'"
+                [ngClass]="searchType === 'phone' ? 'border-primary bg-primary/5 ring-1 ring-primary' : 'border-outline-variant hover:bg-surface-container/50 bg-white hover:border-outline text-on-surface-variant'"
+                class="p-4 rounded-xl border text-center transition-all flex flex-col items-center gap-2 group shadow-sm">
+                <span class="material-symbols-outlined transition-colors"
+                  [ngClass]="searchType === 'phone' ? 'text-primary' : 'group-hover:text-on-surface'">phone_iphone</span>
+                <span class="text-xs font-bold transition-colors"
+                  [ngClass]="searchType === 'phone' ? 'text-primary' : 'group-hover:text-on-surface'">Phone No.</span>
+              </button>
 
-        <!-- Step 8: Complete/Submit -->
-        @if (currentStep === 8) {
-          <div class="text-center space-y-6">
-            <div class="w-20 h-20 bg-primary rounded-full mx-auto flex items-center justify-center text-white shadow-lg shadow-primary/30">
-              <span class="material-symbols-outlined text-4xl">check</span>
+              <!-- Account Number -->
+              <button (click)="searchType = 'account'"
+                [ngClass]="searchType === 'account' ? 'border-primary bg-primary/5 ring-1 ring-primary' : 'border-outline-variant hover:bg-surface-container/50 bg-white hover:border-outline text-on-surface-variant'"
+                class="p-4 rounded-xl border text-center transition-all flex flex-col items-center gap-2 group shadow-sm">
+                <span class="material-symbols-outlined transition-colors"
+                  [ngClass]="searchType === 'account' ? 'text-primary' : 'group-hover:text-on-surface'">account_balance</span>
+                <span class="text-xs font-bold transition-colors"
+                  [ngClass]="searchType === 'account' ? 'text-primary' : 'group-hover:text-on-surface'">Account
+                  No.</span>
+              </button>
+
+              <!-- Paybill -->
+              <button (click)="searchType = 'paybill'"
+                [ngClass]="searchType === 'paybill' ? 'border-primary bg-primary/5 ring-1 ring-primary' : 'border-outline-variant hover:bg-surface-container/50 bg-white hover:border-outline text-on-surface-variant'"
+                class="p-4 rounded-xl border text-center transition-all flex flex-col items-center gap-2 group shadow-sm">
+                <span class="material-symbols-outlined transition-colors"
+                  [ngClass]="searchType === 'paybill' ? 'text-primary' : 'group-hover:text-on-surface'">receipt_long</span>
+                <span class="text-xs font-bold transition-colors"
+                  [ngClass]="searchType === 'paybill' ? 'text-primary' : 'group-hover:text-on-surface'">Paybill
+                  No.</span>
+              </button>
+
+              <!-- Reg Number -->
+              <button (click)="searchType = 'registration'"
+                [ngClass]="searchType === 'registration' ? 'border-primary bg-primary/5 ring-1 ring-primary' : 'border-outline-variant hover:bg-surface-container/50 bg-white hover:border-outline text-on-surface-variant'"
+                class="p-4 rounded-xl border text-center transition-all flex flex-col items-center gap-2 group shadow-sm">
+                <span class="material-symbols-outlined transition-colors"
+                  [ngClass]="searchType === 'registration' ? 'text-primary' : 'group-hover:text-on-surface'">corporate_fare</span>
+                <span class="text-xs font-bold transition-colors"
+                  [ngClass]="searchType === 'registration' ? 'text-primary' : 'group-hover:text-on-surface'">Reg
+                  Number</span>
+              </button>
             </div>
-            <div>
-              <h4 class="text-2xl font-bold text-on-surface">Ready to Submit</h4>
-              <p class="text-on-surface-variant mt-2 max-w-sm mx-auto">All organization details, directors, locations, and tills have been configured.</p>
+
+            <!-- Input Field -->
+            <div class="relative group mt-2">
+              <div class="absolute left-5 inset-y-0 flex items-center pointer-events-none">
+                <span class="material-symbols-outlined text-outline group-focus-within:text-primary transition-colors">
+                  {{ searchType === 'account' ? 'numbers' : searchType === 'paybill' ? 'tag' : searchType === 'phone' ?
+                  'phone' : 'badge' }}
+                </span>
+              </div>
+              <input
+                class="w-full pl-14 pr-5 py-4 bg-surface text-lg font-headline font-bold border border-outline-variant rounded-xl focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none shadow-sm placeholder-on-surface-variant/40"
+                id="search_query"
+                [placeholder]="searchType === 'account' ? 'Enter 10-digit account number' : searchType === 'paybill' ? 'Enter Paybill number' : searchType === 'phone' ? 'Enter Phone Number' : 'Enter Company Reg Number'"
+                type="text" />
+
+              <div class="absolute right-3 inset-y-0 flex items-center">
+                <button
+                  class="bg-primary/10 hover:bg-primary/20 text-primary w-10 h-10 rounded-lg flex items-center justify-center transition-colors">
+                  <span class="material-symbols-outlined text-[20px]">search</span>
+                </button>
+              </div>
             </div>
           </div>
-        }
-
-        <!-- Wizard Navigation -->
-        <div class="mt-12 flex items-center justify-between pt-6 border-t border-surface-variant/30">
-          <button (click)="previousStep()" [disabled]="currentStep === 1" class="px-6 py-2.5 text-on-surface-variant font-bold hover:bg-surface-container rounded-lg transition-colors disabled:opacity-50 flex items-center gap-2">
-            <span class="material-symbols-outlined">arrow_back</span> Back
-          </button>
-          
-          @if (currentStep < 8) {
-            <button (click)="nextStep()" class="px-8 py-2.5 bg-primary text-on-primary font-bold rounded-lg hover:bg-primary-container transition-all flex items-center gap-2 shadow-md shadow-primary/20">
-              Next Step <span class="material-symbols-outlined">arrow_forward</span>
-            </button>
-          } @else {
-            <button routerLink="/organizations" class="px-8 py-2.5 bg-tertiary text-on-primary font-bold rounded-lg hover:brightness-110 transition-all flex items-center gap-2 shadow-md shadow-tertiary/20">
-              Submit Request <span class="material-symbols-outlined">send</span>
-            </button>
           }
-        </div>
 
-      </div>
+          <!-- Step 2: Account Details (Redesigned with Mock JSON) -->
+          @if (currentStep === 2) {
+          <div
+            class="max-w-3xl w-full mx-auto flex-grow flex flex-col justify-start animate-fade-in relative z-10 space-y-6">
 
-      <!-- Contextual Info Panel (Side) -->
-      <div class="lg:col-span-4 flex flex-col gap-6">
-        <div class="bg-primary-container/10 p-6 rounded-xl border border-primary/10">
-          <div class="w-10 h-10 bg-primary-container/20 rounded-lg flex items-center justify-center text-primary mb-4">
-            <span class="material-symbols-outlined filled">info</span>
+            <!-- Header -->
+            <div class="text-center pt-2">
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full mx-auto flex items-center justify-center text-primary border border-primary/20 shadow-sm relative mb-4">
+                <div
+                  class="absolute inset-0 rounded-full border-2 border-primary border-t-transparent animate-spin-slow opacity-50">
+                </div>
+                <span class="material-symbols-outlined text-3xl">verified_user</span>
+              </div>
+              <h4 class="text-2xl font-extrabold font-headline">Customer Match Found</h4>
+              <p class="text-on-surface-variant text-sm mt-1 max-w-lg mx-auto">Please confirm the customer profile and
+                select the primary account to onboard under this merchant profile.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+              <!-- Customer Information Profile Card -->
+              <div
+                class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-2 h-full bg-primary/80"></div>
+                <div class="flex items-center gap-3 mb-5 border-b border-outline-variant pb-4">
+                  <div
+                    class="h-10 w-10 bg-primary-container text-primary rounded-full flex items-center justify-center font-bold text-lg">
+                    {{ mockCustomerInfo.customerName | slice:0:1 }}
+                  </div>
+                  <div>
+                    <p class="font-bold text-lg leading-tight text-on-surface tracking-tight">{{
+                      mockCustomerInfo.customerName }}</p>
+                    <p class="text-xs text-on-surface-variant flex items-center gap-1 mt-0.5"><span
+                        class="material-symbols-outlined text-[12px]">fingerprint</span> CUST-{{
+                      mockCustomerInfo.customerNo }}</p>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-y-4 gap-x-2">
+                  <div>
+                    <p
+                      class="text-[9px] uppercase font-bold tracking-widest text-on-surface-variant mb-1 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[10px]">badge</span> {{
+                      mockCustomerInfo.customerLegalDocName }}
+                    </p>
+                    <p class="font-mono font-bold text-sm text-on-surface">{{ mockCustomerInfo.customerLegalId }}</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-[9px] uppercase font-bold tracking-widest text-on-surface-variant mb-1 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[10px]">call</span> Mobile
+                    </p>
+                    <!-- Displaying the first mobile number to conserve space -->
+                    <p class="font-mono font-bold text-sm text-on-surface">{{
+                      mockCustomerInfo.customerMobileNo.split(',')[0] }}</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-[9px] uppercase font-bold tracking-widest text-on-surface-variant mb-1 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[10px]">home_pin</span> Location
+                    </p>
+                    <p class="font-bold text-sm text-on-surface truncate">{{ mockCustomerInfo.customerTown }}</p>
+                    <p class="text-xs text-on-surface-variant truncate">{{ mockCustomerInfo.customerStreet }}</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-[9px] uppercase font-bold tracking-widest text-on-surface-variant mb-1 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[10px]">gpp_maybe</span> Risk Level
+                    </p>
+                    <span
+                      class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-black tracking-widest bg-error/10 text-error border border-error/20 uppercase">{{
+                      mockCustomerInfo.customerRiskClassification }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Related Accounts List -->
+              <div class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm flex flex-col h-full">
+                <div class="flex items-center justify-between mb-4">
+                  <h5 class="font-bold text-on-surface flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-[20px]">account_balance_wallet</span>
+                    Related Accounts
+                  </h5>
+                  <span
+                    class="bg-surface-variant text-on-surface-variant text-[10px] font-bold px-2 py-0.5 rounded-full">{{
+                    mockCustomerInfo.accounts.length }} Found</span>
+                </div>
+
+                <div class="flex-grow space-y-3 overflow-y-auto pr-1 hide-scrollbar max-h-[220px]">
+                  @for (acc of mockCustomerInfo.accounts; track acc.accountNumber) {
+                  <div (click)="selectedAccount = acc.accountNumber"
+                    class="p-4 rounded-xl border-2 transition-all cursor-pointer flex items-center justify-between group"
+                    [ngClass]="selectedAccount === acc.accountNumber ? 'border-primary bg-primary/5 shadow-sm' : 'border-outline-variant hover:border-primary/50 bg-surface'">
+                    <div>
+                      <p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-1">{{
+                        acc.currency }} Account</p>
+                      <p class="font-mono font-black text-on-surface tracking-tight"
+                        [ngClass]="selectedAccount === acc.accountNumber ? 'text-primary' : ''">{{ acc.accountNumber }}
+                      </p>
+                      <p class="text-xs text-on-surface-variant mt-1 truncate max-w-[150px]">{{ acc.accountTitle }}</p>
+                    </div>
+                    <div
+                      class="h-6 w-6 rounded-full border-2 flex items-center justify-center transition-colors shadow-sm"
+                      [ngClass]="selectedAccount === acc.accountNumber ? 'border-primary bg-primary text-white' : 'border-outline-variant bg-transparent group-hover:border-primary/50'">
+                      <span class="material-symbols-outlined text-[16px] animate-fade-in"
+                        *ngIf="selectedAccount === acc.accountNumber">check</span>
+                    </div>
+                  </div>
+                  }
+                </div>
+              </div>
+
+            </div>
           </div>
-          <h4 class="font-bold text-primary mb-2">Why do we need this?</h4>
-          <p class="text-sm text-on-surface-variant leading-relaxed">We use your bank account number to verify your merchant identity and ensure secure fund transfers. This process is fully encrypted and follows global banking security standards.</p>
-        </div>
+          }
 
-        <div class="bg-surface-container p-6 rounded-xl border border-outline-variant/30">
-          <h4 class="font-bold text-on-surface mb-4">Onboarding Checklist</h4>
-          <ul class="space-y-3 text-sm">
-             <li class="flex items-start gap-2 text-primary font-medium">
-               <span class="material-symbols-outlined filled text-[18px]">check_circle</span>
-               <span>Verify bank account</span>
-             </li>
-             <li class="flex items-start gap-2 text-on-surface-variant">
-               <span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span>
-               <span>Company details & directors</span>
-             </li>
-             <li class="flex items-start gap-2 text-on-surface-variant">
-               <span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span>
-               <span>Add store locations</span>
-             </li>
-             <li class="flex items-start gap-2 text-on-surface-variant">
-               <span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span>
-               <span>Generate terminals (Tills)</span>
-             </li>
-          </ul>
+          <!-- Step 3: Organization Directors -->
+          @if (currentStep === 3) {
+          <div
+            class="max-w-4xl w-full mx-auto flex-grow flex flex-col justify-start animate-fade-in relative z-10 space-y-6">
+
+            <!-- Header -->
+            <div class="flex items-end justify-between border-b border-outline-variant pb-4 pt-2">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shadow-sm">
+                  <span class="material-symbols-outlined text-[28px]">groups</span>
+                </div>
+                <div>
+                  <h4 class="text-2xl font-extrabold font-headline text-on-surface">Organization Directors</h4>
+                  <p class="text-on-surface-variant text-sm font-medium">Add and verify the executive directors of the
+                    company.</p>
+                </div>
+              </div>
+              <button *ngIf="!showDirectorForm" (click)="openAddDirector()"
+                class="px-5 py-2.5 bg-primary text-white font-bold rounded-lg hover:bg-green-800 transition-all flex items-center gap-2 shadow-sm">
+                <span class="material-symbols-outlined text-[18px]">person_add</span> Add Director
+              </button>
+            </div>
+
+            <!-- List View -->
+            <div *ngIf="!showDirectorForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fade-in mt-2">
+              @for (director of directors; track director.id) {
+              <div class="bg-surface p-5 rounded-2xl border transition-all shadow-sm group relative"
+                [ngClass]="director.isPrimary ? 'border-primary shadow-primary/10' : 'border-outline-variant hover:border-primary/40'">
+
+                <div class="absolute top-4 right-4 flex opacity-0 group-hover:opacity-100 transition-opacity gap-1">
+                  <button (click)="openEditDirector(director)"
+                    class="w-8 h-8 rounded-lg bg-surface-container border border-outline-variant text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center shadow-sm">
+                    <span class="material-symbols-outlined text-[16px]">edit</span>
+                  </button>
+                  <button *ngIf="!director.isPrimary" (click)="deleteDirector(director.id)"
+                    class="w-8 h-8 rounded-lg bg-error/10 border border-error/20 text-error hover:bg-error hover:text-white transition-colors flex items-center justify-center shadow-sm">
+                    <span class="material-symbols-outlined text-[16px]">delete</span>
+                  </button>
+                </div>
+
+                <div class="flex items-center gap-4 mb-4">
+                  <div
+                    class="h-12 w-12 bg-primary-container text-primary rounded-xl flex items-center justify-center font-black text-xl border border-primary/20 shadow-inner">
+                    {{ director.fullName | slice:0:1 }}
+                  </div>
+                  <div>
+                    <p class="font-extrabold text-lg text-on-surface leading-snug">{{ director.fullName }}</p>
+                    <div class="flex items-center gap-2 mt-1">
+                      <span
+                        class="text-[10px] font-black tracking-widest uppercase px-2 py-0.5 rounded border text-on-surface-variant border-outline-variant bg-surface-container">{{
+                        director.role }}</span>
+                      <span *ngIf="director.isPrimary"
+                        class="text-[10px] font-black tracking-widest uppercase px-2 py-0.5 rounded border text-primary border-primary/20 bg-primary/10 flex items-center gap-1"><span
+                          class="material-symbols-outlined text-[12px]">verified</span> Primary</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-y-3 gap-x-2 border-t border-outline-variant pt-4 mt-2">
+                  <div>
+                    <p
+                      class="text-[9px] uppercase font-bold tracking-widest text-on-surface-variant mb-1 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[10px]">badge</span> ID NUMBER
+                    </p>
+                    <p class="font-mono font-bold text-sm text-on-surface">{{ director.idNumber }}</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-[9px] uppercase font-bold tracking-widest text-on-surface-variant mb-1 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[10px]">domain</span> KRA PIN
+                    </p>
+                    <p class="font-mono font-bold text-sm text-on-surface">{{ director.kraPin || 'N/A' }}</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-[9px] uppercase font-bold tracking-widest text-on-surface-variant mb-1 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[10px]">call</span> PHONE
+                    </p>
+                    <p class="font-mono font-bold text-sm text-on-surface truncate">{{ director.phoneNumber }}</p>
+                  </div>
+                  <div>
+                    <p
+                      class="text-[9px] uppercase font-bold tracking-widest text-on-surface-variant mb-1 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[10px]">mail</span> EMAIL
+                    </p>
+                    <p class="font-bold text-sm text-on-surface truncate max-w-[120px]">{{ director.email || 'N/A' }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              }
+
+              <!-- Empty State addition -->
+              <div *ngIf="directors.length < 5" (click)="openAddDirector()"
+                class="bg-surface-container-lowest p-5 rounded-2xl border-2 border-dashed border-outline hover:border-primary hover:bg-primary/5 transition-all text-on-surface-variant hover:text-primary flex flex-col justify-center items-center cursor-pointer h-full min-h-[220px] group shadow-sm">
+                <div
+                  class="w-12 h-12 rounded-full bg-surface-container border flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                  <span class="material-symbols-outlined text-[24px]">add</span>
+                </div>
+                <h5 class="font-bold text-lg mb-1">Add Another Director</h5>
+                <p class="text-xs text-center max-w-[200px] font-medium opacity-80">You can register multiple officials
+                  for this merchant entity.</p>
+              </div>
+            </div>
+
+            <!-- Add/Edit Form -->
+            <div *ngIf="showDirectorForm"
+              class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm animate-fade-in mt-4 border-t-4 border-t-primary">
+              <h5 class="text-xl font-extrabold font-headline mb-6 border-b border-outline-variant pb-4">{{
+                editingDirector ? 'Edit Director Profile' : 'Register New Director' }}</h5>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-xs font-bold text-on-surface-variant mb-2">Full Legal Name</label>
+                  <input type="text" [(ngModel)]="newDirector.fullName"
+                    class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    placeholder="John Doe">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-on-surface-variant mb-2">Primary Role</label>
+                  <input type="text" [(ngModel)]="newDirector.role"
+                    class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    placeholder="e.g. Managing Director">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-on-surface-variant mb-2">National ID / Passport</label>
+                  <input type="text" [(ngModel)]="newDirector.idNumber"
+                    class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 font-mono font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    placeholder="ID Number">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-on-surface-variant mb-2">Nationality</label>
+                  <select [(ngModel)]="newDirector.nationality"
+                    class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all appearance-none">
+                    <option value="Kenyan">Kenyan</option>
+                    <option value="Ugandan">Ugandan</option>
+                    <option value="Tanzanian">Tanzanian</option>
+                    <option value="Rwandan">Rwandan</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-on-surface-variant mb-2">Phone Number</label>
+                  <input type="text" [(ngModel)]="newDirector.phoneNumber"
+                    class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 font-mono font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    placeholder="+254...">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-on-surface-variant mb-2">Email Address</label>
+                  <input type="email" [(ngModel)]="newDirector.email"
+                    class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    placeholder="director@example.com">
+                </div>
+              </div>
+
+              <div class="mt-8 flex items-center gap-3 pt-6 border-t border-outline-variant">
+                <button (click)="saveDirector()"
+                  class="px-6 py-2.5 bg-primary text-white font-bold rounded-lg shadow-sm hover:-translate-y-0.5 transition-all">
+                  {{ editingDirector ? 'Update Changes' : 'Save Director' }}
+                </button>
+                <button (click)="cancelDirectorForm()"
+                  class="px-6 py-2.5 bg-surface-container border border-outline-variant text-on-surface-variant font-bold rounded-lg shadow-sm hover:text-on-surface hover:bg-surface-variant transition-all">
+                  Cancel
+                </button>
+              </div>
+            </div>
+
+          </div>
+          }
+
+          <!-- Step 4: Communication & Settings -->
+          @if (currentStep === 4) {
+          <div
+            class="max-w-3xl w-full mx-auto flex-grow flex flex-col justify-start animate-fade-in relative z-10 space-y-6">
+
+            <!-- Header -->
+            <div class="flex items-end justify-between border-b border-outline-variant pb-4 pt-2">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shadow-sm">
+                  <span class="material-symbols-outlined text-[28px]">notifications_active</span>
+                </div>
+                <div>
+                  <h4 class="text-2xl font-extrabold font-headline text-on-surface">Communication settings</h4>
+                  <p class="text-on-surface-variant text-sm font-medium">Configure organization short code and
+                    notification preferences.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6">
+              <!-- Org Short Code Panel -->
+              <div
+                class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-2 h-full bg-primary/80"></div>
+                <h5 class="text-md font-bold text-on-surface mb-1 flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[18px]">pin</span> Organization Short Code
+                </h5>
+                <p class="text-xs text-on-surface-variant mb-4">This unique 5-digit code will be used to identify the
+                  organization across the system.</p>
+
+                <div class="flex items-center gap-4">
+                  <div class="relative flex-grow">
+                    <input type="text" [(ngModel)]="orgShortCode" readonly
+                      class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl pl-4 pr-12 py-3 font-mono font-black text-2xl tracking-widest text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all shadow-inner"
+                      placeholder="-----">
+                  </div>
+                  <button (click)="generateShortCode()"
+                    class="px-5 py-3.5 bg-primary text-white font-bold rounded-xl hover:bg-green-800 transition-all flex items-center gap-2 shadow-sm shrink-0">
+                    <span
+                      class="material-symbols-outlined text-[20px] {{ orgShortCode ? 'animate-spin-once' : '' }}">autorenew</span>
+                    {{ orgShortCode ? 'Regenerate' : 'Generate Code' }}
+                  </button>
+                </div>
+              </div>
+
+              <!-- Notifications Panel -->
+              <div class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm relative">
+                <h5
+                  class="text-md font-bold text-on-surface mb-5 flex items-center gap-2 border-b border-outline-variant pb-3">
+                  <span class="material-symbols-outlined text-[18px]">contact_mail</span> Contact & Preferances
+                </h5>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-xs font-bold text-on-surface-variant mb-2">Notification Phone</label>
+                    <div class="relative">
+                      <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined text-[18px]">phone</span>
+                      <input type="text" [(ngModel)]="notificationPhone"
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-11 pr-4 py-2.5 font-mono font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        placeholder="+257...">
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-on-surface-variant mb-2">Notification Email</label>
+                    <div class="relative">
+                      <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined text-[18px]">mail</span>
+                      <input type="email" [(ngModel)]="notificationEmail"
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-11 pr-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        placeholder="org@example.com">
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-on-surface-variant mb-2">Preferred Language</label>
+                    <div class="relative">
+                      <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined text-[18px]">translate</span>
+                      <select [(ngModel)]="notificationLanguage"
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-11 pr-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all appearance-none cursor-pointer">
+                        <option value="English">English</option>
+                        <option value="French">Français</option>
+                        <option value="Swahili">Kiswahili</option>
+                      </select>
+                      <span
+                        class="absolute right-4 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined text-[20px] pointer-events-none">expand_more</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-on-surface-variant mb-2">Preferred Channel</label>
+                    <div class="relative">
+                      <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined text-[18px]">rss_feed</span>
+                      <select [(ngModel)]="notificationChannel"
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-11 pr-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all appearance-none cursor-pointer">
+                        <option value="Both">Both (SMS & Email)</option>
+                        <option value="SMS">SMS Only</option>
+                        <option value="Email">Email Only</option>
+                      </select>
+                      <span
+                        class="absolute right-4 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined text-[20px] pointer-events-none">expand_more</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          }
+
+          <!-- Other steps represented by placeholders for now -->
+          <!-- Step 5: Till Creation -->
+          @if (currentStep === 5) {
+          <div
+            class="max-w-4xl w-full mx-auto flex-grow flex flex-col justify-start animate-fade-in relative z-10 space-y-6">
+
+            <!-- Header -->
+            <div class="flex items-end justify-between border-b border-outline-variant pb-4 pt-2">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shadow-sm">
+                  <span class="material-symbols-outlined text-[28px]">point_of_sale</span>
+                </div>
+                <div>
+                  <h4 class="text-2xl font-extrabold font-headline text-on-surface">First Till Creation</h4>
+                  <p class="text-on-surface-variant text-sm font-medium">Configure the primary till attached to the
+                    organization.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Basic Info -->
+              <div class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm relative md:col-span-2">
+                <h5
+                  class="text-md font-bold text-on-surface mb-5 flex items-center gap-2 border-b border-outline-variant pb-3">
+                  <span class="material-symbols-outlined text-[18px]">storefront</span> Till Details
+                </h5>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-xs font-bold text-on-surface-variant mb-2">Business Name</label>
+                    <input type="text" [(ngModel)]="businessName"
+                      class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                      placeholder="Enter Business Name">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-on-surface-variant mb-2">Till Name</label>
+                    <input type="text" [(ngModel)]="tillName"
+                      class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                      placeholder="Enter Till Name">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Till Number Configuration -->
+              <div class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm relative md:col-span-2">
+                <h5
+                  class="text-md font-bold text-on-surface mb-5 flex items-center gap-2 border-b border-outline-variant pb-3">
+                  <span class="material-symbols-outlined text-[18px]">tag</span> Till Number Configuration
+                </h5>
+
+                <div class="flex gap-4 mb-6">
+                  <button (click)="tillNumberType = 'generate'"
+                    [ngClass]="tillNumberType === 'generate' ? 'border-primary bg-primary/5 ring-1 ring-primary' : 'border-outline-variant hover:bg-surface-container/50 bg-white hover:border-outline text-on-surface-variant'"
+                    class="flex-1 p-3 rounded-xl border text-center transition-all flex items-center justify-center gap-2 shadow-sm font-bold">
+                    <span class="material-symbols-outlined text-[20px]"
+                      [ngClass]="tillNumberType === 'generate' ? 'text-primary' : ''">autorenew</span>
+                    Generate Till
+                  </button>
+                  <button (click)="tillNumberType = 'reserved'"
+                    [ngClass]="tillNumberType === 'reserved' ? 'border-primary bg-primary/5 ring-1 ring-primary' : 'border-outline-variant hover:bg-surface-container/50 bg-white hover:border-outline text-on-surface-variant'"
+                    class="flex-1 p-3 rounded-xl border text-center transition-all flex items-center justify-center gap-2 shadow-sm font-bold">
+                    <span class="material-symbols-outlined text-[20px]"
+                      [ngClass]="tillNumberType === 'reserved' ? 'text-primary' : ''">vpn_key</span>
+                    Reserved Till
+                  </button>
+                </div>
+
+                @if (tillNumberType === 'generate') {
+                <div
+                  class="flex items-center gap-4 bg-surface-container-lowest p-4 rounded-xl border border-outline-variant">
+                  <div class="relative flex-grow">
+                    <input type="text" [(ngModel)]="generatedTillNumber" readonly
+                      class="w-full bg-transparent border-none p-0 font-mono font-black text-2xl tracking-widest text-primary focus:outline-none focus:ring-0"
+                      placeholder="------">
+                  </div>
+                  <button (click)="generateTillNumber()"
+                    class="px-5 py-3 bg-primary text-white font-bold rounded-lg hover:bg-green-800 transition-all flex items-center gap-2 shadow-sm shrink-0">
+                    <span
+                      class="material-symbols-outlined text-[20px] {{ generatedTillNumber ? 'animate-spin-once' : '' }}">autorenew</span>
+                    {{ generatedTillNumber ? 'Regenerate' : 'Generate Number' }}
+                  </button>
+                </div>
+                } @else {
+                <div class="relative max-w-md">
+                  <label class="block text-xs font-bold text-on-surface-variant mb-2">Reserved Till Number</label>
+                  <input type="text" [(ngModel)]="reservedTillNumber"
+                    class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 font-mono font-bold text-lg focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                    placeholder="Enter reserved till number">
+                </div>
+                }
+              </div>
+
+              <!-- Notifications -->
+              <div class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm relative w-full">
+                <h5
+                  class="text-md font-bold text-on-surface mb-5 flex items-center gap-2 border-b border-outline-variant pb-3">
+                  <span class="material-symbols-outlined text-[18px]">notifications</span> Till Notifications
+                </h5>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-xs font-bold text-on-surface-variant mb-2">Notification Phone</label>
+                    <div class="relative">
+                      <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined text-[18px]">phone</span>
+                      <input type="text" [(ngModel)]="tillNotificationPhone"
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-11 pr-4 py-2.5 font-mono font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        placeholder="+257...">
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-on-surface-variant mb-2">Notification Email</label>
+                    <div class="relative">
+                      <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined text-[18px]">mail</span>
+                      <input type="email" [(ngModel)]="tillNotificationEmail"
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-11 pr-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        placeholder="till@example.com">
+                    </div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4 mt-2">
+                    <div>
+                      <label class="block text-xs font-bold text-on-surface-variant mb-2">Channel</label>
+                      <select [(ngModel)]="tillNotificationChannel"
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2.5 font-bold focus:border-primary focus:ring-2 outline-none appearance-none">
+                        <option value="Both">Both (SMS & Email)</option>
+                        <option value="SMS">SMS</option>
+                        <option value="Email">Email</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="block text-xs font-bold text-on-surface-variant mb-2">Language</label>
+                      <select [(ngModel)]="tillNotificationLanguage"
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2.5 font-bold focus:border-primary focus:ring-2 outline-none appearance-none">
+                        <option value="English">English</option>
+                        <option value="French">Français</option>
+                        <option value="Swahili">Kiswahili</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Linked Accounts -->
+              <div
+                class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm relative w-full h-full flex flex-col justify-between">
+                <div>
+                  <h5
+                    class="text-md font-bold text-on-surface mb-5 flex items-center gap-2 border-b border-outline-variant pb-3">
+                    <span class="material-symbols-outlined text-[18px]">account_balance</span> Linked Accounts
+                  </h5>
+                  <div class="space-y-4">
+                    <div>
+                      <label class="block text-xs font-bold text-on-surface-variant mb-2">Till Bank Account</label>
+                      <div class="relative">
+                        <span
+                          class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined text-[18px]">account_balance_wallet</span>
+                        <select [(ngModel)]="tillBankAccount"
+                          class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-11 pr-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all appearance-none cursor-pointer">
+                          <option value="" disabled selected>Select an account</option>
+                          @for (acc of mockCustomerInfo.accounts; track acc.accountNumber) {
+                          <option [value]="acc.accountNumber">{{ acc.accountNumber }} - {{ acc.currency }}</option>
+                          }
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined text-[20px] pointer-events-none">expand_more</span>
+                      </div>
+                    </div>
+                    <div>
+                      <label class="block text-xs font-bold text-on-surface-variant mb-2">Commission Account <span
+                          class="text-on-surface-variant font-medium">(Optional)</span></label>
+                      <div class="relative">
+                        <span
+                          class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined text-[18px]">savings</span>
+                        <select [(ngModel)]="tillCommissionAccount"
+                          class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-11 pr-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all appearance-none cursor-pointer">
+                          <option value="" disabled selected>Select an account</option>
+                          @for (acc of mockCustomerInfo.accounts; track acc.accountNumber) {
+                          <option [value]="acc.accountNumber">{{ acc.accountNumber }} - {{ acc.currency }}</option>
+                          }
+                        </select>
+                        <span
+                          class="absolute right-4 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined text-[20px] pointer-events-none">expand_more</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          }
+
+          <!-- Step 6: Review & Submit -->
+          @if (currentStep === 6) {
+          <div class="max-w-4xl w-full mx-auto flex-grow flex flex-col justify-start animate-fade-in relative z-10 space-y-6">
+            
+            <!-- Header -->
+            <div class="flex items-end justify-between border-b border-outline-variant pb-4 pt-2">
+              <div class="flex items-center gap-4">
+                <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shadow-sm">
+                  <span class="material-symbols-outlined text-[28px]">fact_check</span>
+                </div>
+                <div>
+                  <h4 class="text-2xl font-extrabold font-headline text-on-surface">Review & Submit</h4>
+                  <p class="text-on-surface-variant text-sm font-medium">Please review the details before submitting the onboarding request.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <!-- Organization Summary -->
+              <div class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm relative group">
+                 <div class="absolute right-6 top-6">
+                   <button (click)="goToStep(2)" class="text-primary hover:bg-primary/10 rounded-lg p-2 transition-all flex items-center gap-1 font-bold text-sm">
+                     <span class="material-symbols-outlined text-[18px]">edit</span> Edit
+                   </button>
+                 </div>
+                 <h5 class="text-md font-bold text-on-surface mb-4 border-b border-outline-variant pb-2 flex items-center gap-2">
+                   <span class="material-symbols-outlined text-[18px]">corporate_fare</span> Organization Details
+                 </h5>
+                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div>
+                      <p class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant mb-1">Customer Name</p>
+                      <p class="font-bold text-sm text-on-surface">{{ mockCustomerInfo.customerName }}</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant mb-1">Primary Account</p>
+                      <p class="font-mono font-bold text-sm text-on-surface">{{ selectedAccount }}</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant mb-1">Registration No.</p>
+                      <p class="font-bold text-sm text-on-surface">{{ mockCustomerInfo.customerLegalId }}</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant mb-1">Short Code</p>
+                      <p class="font-mono font-bold text-sm text-on-surface">{{ orgShortCode || 'Not Set' }}</p>
+                    </div>
+                 </div>
+              </div>
+
+              <!-- Directors Summary -->
+              <div class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm relative group">
+                 <div class="absolute right-6 top-6">
+                   <button (click)="goToStep(3)" class="text-primary hover:bg-primary/10 rounded-lg p-2 transition-all flex items-center gap-1 font-bold text-sm">
+                     <span class="material-symbols-outlined text-[18px]">edit</span> Edit
+                   </button>
+                 </div>
+                 <h5 class="text-md font-bold text-on-surface mb-4 border-b border-outline-variant pb-2 flex items-center gap-2">
+                   <span class="material-symbols-outlined text-[18px]">groups</span> Directors ({{ directors.length }})
+                 </h5>
+                 <div class="space-y-3">
+                   @for (director of directors; track director.id) {
+                     <div class="flex items-center justify-between pb-2 border-b border-dashed border-outline-variant last:border-0 last:pb-0">
+                       <div class="flex items-center gap-3">
+                         <div class="h-8 w-8 bg-primary-container text-primary rounded-lg flex items-center justify-center font-bold text-sm">
+                           {{ director.fullName | slice:0:1 }}
+                         </div>
+                         <div>
+                           <p class="font-bold text-sm text-on-surface">{{ director.fullName }}</p>
+                           <p class="text-xs text-on-surface-variant">{{ director.role }} · {{ director.idNumber }}</p>
+                         </div>
+                       </div>
+                       <span *ngIf="director.isPrimary" class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md bg-primary/10 text-primary border border-primary/20">Primary</span>
+                     </div>
+                   }
+                 </div>
+              </div>
+
+              <!-- Till Summary -->
+              <div class="bg-surface p-6 rounded-2xl border border-outline-variant shadow-sm relative group">
+                 <div class="absolute right-6 top-6">
+                   <button (click)="goToStep(5)" class="text-primary hover:bg-primary/10 rounded-lg p-2 transition-all flex items-center gap-1 font-bold text-sm">
+                     <span class="material-symbols-outlined text-[18px]">edit</span> Edit
+                   </button>
+                 </div>
+                 <h5 class="text-md font-bold text-on-surface mb-4 border-b border-outline-variant pb-2 flex items-center gap-2">
+                   <span class="material-symbols-outlined text-[18px]">point_of_sale</span> Till Configuration
+                 </h5>
+                 <div class="grid grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4">
+                    <div>
+                      <p class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant mb-1">Business Name</p>
+                      <p class="font-bold text-sm text-on-surface truncate">{{ businessName || 'Not Set' }}</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant mb-1">Till Name</p>
+                      <p class="font-bold text-sm text-on-surface truncate">{{ tillName || 'Not Set' }}</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant mb-1">Till Number</p>
+                      <p class="font-mono font-bold text-sm text-on-surface">
+                        {{ tillNumberType === 'generate' ? (generatedTillNumber || 'Not Generated') : (reservedTillNumber || 'Not Set') }}
+                      </p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant mb-1">Till Bank Account</p>
+                      <p class="font-mono font-bold text-sm text-on-surface truncate">{{ tillBankAccount || 'Not Set' }}</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant mb-1">Commission Acc.</p>
+                      <p class="font-mono font-bold text-sm text-on-surface truncate">{{ tillCommissionAccount || 'Not Set' }}</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] uppercase font-bold tracking-widest text-on-surface-variant mb-1">Notification Profile</p>
+                      <p class="font-bold text-sm text-on-surface">{{ tillNotificationChannel }} ({{ tillNotificationLanguage }})</p>
+                    </div>
+                 </div>
+              </div>
+            </div>
+
+          </div>
+          }
+
+          <!-- Wizard Navigation inside the card -->
+          <div class="mt-8 flex items-center justify-between pt-6 border-t border-outline-variant relative z-10">
+            <button (click)="previousStep()" [disabled]="currentStep === 1"
+              class="px-5 py-2.5 text-on-surface-variant font-bold hover:bg-surface-variant/50 rounded-lg transition-colors disabled:opacity-30 disabled:hover:bg-transparent flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">arrow_back</span> Back
+            </button>
+
+            <div class="flex gap-2">
+              <button
+                class="px-5 py-2.5 text-primary border border-primary/30 font-bold rounded-lg hover:bg-primary/5 transition-colors hidden sm:block">
+                Save Draft
+              </button>
+
+              @if (currentStep < steps.length) { 
+                <button (click)="nextStep()"
+                  class="px-8 py-2.5 bg-primary text-white font-bold rounded-lg hover:bg-green-800 hover:-translate-y-0.5 transition-all flex items-center gap-2 shadow-md hover:shadow-lg">
+                  Next Step <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                </button>
+              } @else {
+                <button routerLink="/organizations"
+                  class="px-8 py-2.5 bg-primary text-white font-bold rounded-lg hover:bg-green-800 hover:-translate-y-0.5 transition-all flex items-center gap-2 shadow-md hover:shadow-lg relative overflow-hidden group">
+                  <span class="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></span>
+                  <span>Submit Request</span> <span class="material-symbols-outlined text-[18px]">send</span>
+                </button>
+              }
+            </div>
+          </div>
+
         </div>
       </div>
-
     </div>
   </div>
 </div>
