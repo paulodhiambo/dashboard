@@ -24,6 +24,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/organizations/org-onboarding/org-onboarding').then(c => c.OrgOnboardingComponent)
       },
       {
+        path: 'organizations/detail/:code',
+        loadComponent: () => import('./features/organizations/org-detail/org-detail').then(c => c.OrgDetailComponent)
+      },
+      {
         path: 'tills',
         loadComponent: () => import('./features/till-management/till-management/till-management').then(c => c.TillManagement)
       },

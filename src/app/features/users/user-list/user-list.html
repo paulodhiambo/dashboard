@@ -4,7 +4,7 @@
     <div>
       <h2 class="text-3xl font-extrabold font-headline text-on-surface tracking-tight mb-2">User Management</h2>
       <p class="text-on-surface-variant max-w-xl font-medium">Coordinate access control, oversee role assignments, and
-        manage portal activity for all enterprise administrators.</p>
+        manage portal.</p>
     </div>
     <button routerLink="add"
       class="bg-primary text-on-primary px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-sm hover:translate-y-[-2px] hover:shadow-md transition-all active:scale-95">
@@ -87,17 +87,20 @@
           [class.hover:bg-surface-variant/30]="filter !== 'All'">
           All Users
         </button>
-        <button (click)="setFilter('Branch Maker')" class="px-5 py-2 text-sm rounded-md transition-all whitespace-nowrap"
+        <button (click)="setFilter('Branch Maker')"
+          class="px-5 py-2 text-sm rounded-md transition-all whitespace-nowrap"
           [class.bg-white]="filter === 'Branch Maker'" [class.text-on-surface]="filter === 'Branch Maker'"
           [class.font-bold]="filter === 'Branch Maker'" [class.shadow-sm]="filter === 'Branch Maker'"
           [class.text-on-surface-variant]="filter !== 'Branch Maker'" [class.font-medium]="filter !== 'Branch Maker'"
           [class.hover:bg-surface-variant/30]="filter !== 'Branch Maker'">
           Branch Maker
         </button>
-        <button (click)="setFilter('Branch Checker')" class="px-5 py-2 text-sm rounded-md transition-all whitespace-nowrap"
+        <button (click)="setFilter('Branch Checker')"
+          class="px-5 py-2 text-sm rounded-md transition-all whitespace-nowrap"
           [class.bg-white]="filter === 'Branch Checker'" [class.text-on-surface]="filter === 'Branch Checker'"
           [class.font-bold]="filter === 'Branch Checker'" [class.shadow-sm]="filter === 'Branch Checker'"
-          [class.text-on-surface-variant]="filter !== 'Branch Checker'" [class.font-medium]="filter !== 'Branch Checker'"
+          [class.text-on-surface-variant]="filter !== 'Branch Checker'"
+          [class.font-medium]="filter !== 'Branch Checker'"
           [class.hover:bg-surface-variant/30]="filter !== 'Branch Checker'">
           Branch Checker
         </button>
@@ -109,7 +112,8 @@
           User Maker
         </button>
 
-        <button (click)="setFilter('User Checker')" class="px-5 py-2 text-sm rounded-md transition-all whitespace-nowrap"
+        <button (click)="setFilter('User Checker')"
+          class="px-5 py-2 text-sm rounded-md transition-all whitespace-nowrap"
           [class.bg-white]="filter === 'User Checker'" [class.text-on-surface]="filter === 'User Checker'"
           [class.font-bold]="filter === 'User Checker'" [class.shadow-sm]="filter === 'User Checker'"
           [class.text-on-surface-variant]="filter !== 'User Checker'" [class.font-medium]="filter !== 'User Checker'"
@@ -152,7 +156,7 @@
               Role Status</th>
             <th
               class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest whitespace-nowrap">
-              Regional Info</th>
+              Branch Info</th>
             <th
               class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest text-right whitespace-nowrap">
               Actions</th>
@@ -200,7 +204,7 @@
             <td class="px-6 py-4 whitespace-nowrap">
               <div class="flex flex-col gap-1 text-sm">
                 <span class="font-medium text-on-surface flex items-center gap-1.5">
-                  <span class="material-symbols-outlined text-outline text-[18px]">public</span> {{ user.country }}
+                  <span class="material-symbols-outlined text-outline text-[18px]">public</span> {{ user.branch }}
                 </span>
                 <span class="text-xs text-on-surface-variant flex items-center gap-1.5">
                   <span class="material-symbols-outlined text-outline text-[16px]">history</span> {{ user.lastActive }}
@@ -271,8 +275,9 @@
   <!-- Action Side Panel Overlay -->
   @if (selectedUserForAction) {
   <div class="fixed inset-0 bg-on-surface/20 z-40 backdrop-blur-sm transition-opacity"></div>
-  
-  <div class="fixed top-0 right-0 h-full w-full max-w-md bg-surface shadow-2xl z-50 flex flex-col transform transition-transform duration-300 border-l border-outline-variant animate-slide-in-right">
+
+  <div
+    class="fixed top-0 right-0 h-full w-full max-w-md bg-surface shadow-2xl z-50 flex flex-col transform transition-transform duration-300 border-l border-outline-variant animate-slide-in-right">
     <!-- Header -->
     <div class="p-6 border-b border-outline-variant flex items-center justify-between bg-surface-container-lowest">
       <div class="flex items-center gap-3">
@@ -284,37 +289,40 @@
           <p class="text-xs text-on-surface-variant">Evaluate pending access request</p>
         </div>
       </div>
-      <button (click)="closeActionPanel()" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-on-surface-variant transition-colors">
+      <button (click)="closeActionPanel()"
+        class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-on-surface-variant transition-colors">
         <span class="material-symbols-outlined text-[20px]">close</span>
       </button>
     </div>
 
     <!-- Content -->
     <div class="p-6 flex-grow overflow-y-auto space-y-6">
-      
+
       <!-- User Summary Card -->
       <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-sm">
         <div class="flex items-center gap-4 mb-4">
-          <div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg shadow-inner">
+          <div
+            class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg shadow-inner">
             {{ selectedUserForAction.name.charAt(0) }}
           </div>
           <div>
             <h4 class="font-bold text-on-surface text-md">{{ selectedUserForAction.name }}</h4>
             <p class="font-mono text-outline font-semibold text-xs mb-1">@{{ selectedUserForAction.username }}</p>
-            <span class="px-2.5 py-1 text-[10px] font-bold rounded-md uppercase border tracking-wider inline-flex items-center gap-1 mt-1"
-                [ngClass]="getRoleColorClass(selectedUserForAction.role)">
-                <span class="material-symbols-outlined text-[12px]">
-                  {{ selectedUserForAction.role === 'USER_CHECKER' ? 'shield_person' : 'badge' }}
-                </span>
-                {{ selectedUserForAction.role.replace('_', ' ') }}
+            <span
+              class="px-2.5 py-1 text-[10px] font-bold rounded-md uppercase border tracking-wider inline-flex items-center gap-1 mt-1"
+              [ngClass]="getRoleColorClass(selectedUserForAction.role)">
+              <span class="material-symbols-outlined text-[12px]">
+                {{ selectedUserForAction.role === 'USER_CHECKER' ? 'shield_person' : 'badge' }}
+              </span>
+              {{ selectedUserForAction.role.replace('_', ' ') }}
             </span>
           </div>
         </div>
-        
+
         <div class="grid grid-cols-2 gap-y-3 pt-3 border-t border-outline-variant text-sm">
           <div>
             <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-0.5">Location</p>
-            <p class="font-medium text-on-surface">{{ selectedUserForAction.country }}</p>
+            <p class="font-medium text-on-surface">{{ selectedUserForAction.branch }}</p>
           </div>
           <div>
             <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-0.5">Email</p>
@@ -326,24 +334,27 @@
       <!-- Action Form -->
       <div>
         <label class="block text-sm font-bold text-on-surface mb-2">Remarks / Reason</label>
-        <textarea [(ngModel)]="actionReason" rows="4" 
+        <textarea [(ngModel)]="actionReason" rows="4"
           class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-4 text-sm focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 outline-none transition-all resize-none shadow-sm"
           placeholder="Enter the reason for approval, rejection, or why an update is needed..."></textarea>
       </div>
-      
+
     </div>
 
     <!-- Footer Actions -->
     <div class="p-6 border-t border-outline-variant bg-surface-container mt-auto space-y-3">
-      <button (click)="submitAction('Approve')" class="w-full py-3 bg-primary text-white font-bold rounded-xl shadow-sm hover:bg-green-700 transition-all flex items-center justify-center gap-2">
+      <button (click)="submitAction('Approve')"
+        class="w-full py-3 bg-primary text-white font-bold rounded-xl shadow-sm hover:bg-green-700 transition-all flex items-center justify-center gap-2">
         <span class="material-symbols-outlined text-[20px]">check_circle</span> Approve User
       </button>
-      
+
       <div class="grid grid-cols-2 gap-3">
-        <button (click)="submitAction('Request Update')" class="w-full py-3 bg-white border border-outline-variant text-on-surface font-bold rounded-xl shadow-sm hover:bg-surface-variant/30 transition-all flex items-center justify-center gap-2 text-sm">
+        <button (click)="submitAction('Request Update')"
+          class="w-full py-3 bg-white border border-outline-variant text-on-surface font-bold rounded-xl shadow-sm hover:bg-surface-variant/30 transition-all flex items-center justify-center gap-2 text-sm">
           <span class="material-symbols-outlined text-[18px]">update</span> Request Update
         </button>
-        <button (click)="submitAction('Reject')" class="w-full py-3 bg-error/10 text-error border border-error/20 font-bold rounded-xl shadow-sm hover:bg-error hover:text-white transition-all flex items-center justify-center gap-2 text-sm">
+        <button (click)="submitAction('Reject')"
+          class="w-full py-3 bg-error/10 text-error border border-error/20 font-bold rounded-xl shadow-sm hover:bg-error hover:text-white transition-all flex items-center justify-center gap-2 text-sm">
           <span class="material-symbols-outlined text-[18px]">cancel</span> Reject
         </button>
       </div>
@@ -358,8 +369,13 @@
   }
 
   @keyframes slideInRight {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
+    from {
+      transform: translateX(100%);
+    }
+
+    to {
+      transform: translateX(0);
+    }
   }
 
   .fade-in {

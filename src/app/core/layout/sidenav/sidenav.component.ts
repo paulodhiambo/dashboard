@@ -20,8 +20,8 @@ interface NavItem {
             <span class="material-symbols-outlined text-white text-xl">account_balance_wallet</span>
           </div>
           <div>
-            <h1 class="text-base font-bold tracking-widest uppercase text-green-800 font-headline leading-tight">Sovereign Vault</h1>
-            <p class="text-[10px] text-slate-500 font-medium tracking-wide uppercase mt-0.5">Fintech Enterprise</p>
+            <h1 class="text-base font-bold tracking-widest uppercase text-green-800 font-headline leading-tight">KCB Group</h1>
+            <p class="text-[10px] text-slate-500 font-medium tracking-wide uppercase mt-0.5">Merchant Portal</p>
           </div>
         </div>
       </div>

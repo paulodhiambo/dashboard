@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 interface Till {
   id: string;
@@ -18,6 +19,15 @@ interface Till {
   styles: ``,
 })
 export class TillManagement implements OnInit {
+  private router = inject(Router);
+  searchShortCode: string = '';
+
+  searchOrganization() {
+    if (this.searchShortCode.trim()) {
+      this.router.navigate(['/organizations/detail', this.searchShortCode.trim().toUpperCase()]);
+    }
+  }
+
   tills: Till[] = [
     { id: 'TILL-8921-X', businessName: 'Acme Supermarket', branchLocation: 'Nairobi Central', dailyLimit: 'KES 500,000', status: 'Active' },
     { id: 'TILL-8922-Y', businessName: 'Acme Electronics', branchLocation: 'Westlands Mall', dailyLimit: 'KES 1,000,000', status: 'Pending Review' },

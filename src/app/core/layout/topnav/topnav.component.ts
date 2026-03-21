@@ -29,6 +29,11 @@ import { Component } from '@angular/core';
           </button>
         </div>
         <div class="h-6 w-px bg-slate-200"></div>
+        <button class="flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-slate-100 transition-colors" title="Change Region">
+          <img src="https://flagcdn.com/w40/tz.png" alt="Tanzania" class="w-5 h-auto rounded-[2px] shadow-sm border border-black/10">
+          <span class="text-xs font-bold text-slate-600">TZ</span>
+          <span class="material-symbols-outlined text-[16px] text-slate-400">arrow_drop_down</span>
+        </button>
         <button class="text-sm font-bold text-slate-600 hover:text-green-700 transition-colors">Support</button>
       </div>
     </header>

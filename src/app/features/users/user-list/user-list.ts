@@ -9,7 +9,7 @@ export interface PortalUser {
   username: string;
   email: string;
   role: 'BRANCH_MAKER' | 'BRANCH_CHECKER' | 'USER_MAKER' | 'USER_CHECKER';
-  country: string;
+  branch: string;
   status: 'Active' | 'Pending Approval' | 'Suspended';
   lastActive: string;
 }
@@ -23,19 +23,19 @@ export interface PortalUser {
 export class UserListComponent {
   filter: 'All' | 'Branch Maker' | 'Branch Checker' | 'User Maker' | 'User Checker' = 'All';
   searchTerm: string = '';
-  
+
   currentPage: number = 1;
   pageSize: number = 5;
 
   users: PortalUser[] = [
-    { id: 'USR-001', name: 'Alexander Pierce', username: 'apierce_sv', email: 'a.pierce@vault.com', role: 'BRANCH_MAKER', country: 'United Kingdom', status: 'Active', lastActive: '2 mins ago' },
-    { id: 'USR-002', name: 'Sarah Jenkins', username: 'sjenkins_ops', email: 's.jenkins@vault.com', role: 'BRANCH_CHECKER', country: 'Singapore', status: 'Pending Approval', lastActive: 'Never' },
-    { id: 'USR-003', name: 'Michael Chen', username: 'mchen_admin', email: 'm.chen@vault.com', role: 'USER_MAKER', country: 'Canada', status: 'Active', lastActive: '1 hr ago' },
-    { id: 'USR-004', name: 'Elena Rossi', username: 'erossi_it', email: 'e.rossi@vault.com', role: 'USER_CHECKER', country: 'Italy', status: 'Active', lastActive: '5 mins ago' },
-    { id: 'USR-005', name: 'James Wilson', username: 'jwilson_bm', email: 'j.wilson@vault.com', role: 'BRANCH_MAKER', country: 'United States', status: 'Suspended', lastActive: '3 days ago' },
-    { id: 'USR-006', name: 'Emily Davis', username: 'edavis_ops', email: 'e.davis@vault.com', role: 'BRANCH_CHECKER', country: 'Australia', status: 'Active', lastActive: '2 hrs ago' },
-    { id: 'USR-007', name: 'David Kim', username: 'dkim_sv', email: 'd.kim@vault.com', role: 'BRANCH_MAKER', country: 'South Korea', status: 'Pending Approval', lastActive: 'Never' },
-    { id: 'USR-008', name: 'Sophia Martinez', username: 'smartinez', email: 's.martinez@vault.com', role: 'USER_MAKER', country: 'Spain', status: 'Active', lastActive: '1 day ago' }
+    { id: 'USR-001', name: 'Alexander Pierce', username: 'apierce_sv', email: 'a.pierce@vault.com', role: 'BRANCH_MAKER', branch: 'DFS', status: 'Active', lastActive: '2 mins ago' },
+    { id: 'USR-002', name: 'Sarah Jenkins', username: 'sjenkins_ops', email: 's.jenkins@vault.com', role: 'BRANCH_CHECKER', branch: 'DFS', status: 'Pending Approval', lastActive: 'Never' },
+    { id: 'USR-003', name: 'Michael Chen', username: 'mchen_admin', email: 'm.chen@vault.com', role: 'USER_MAKER', branch: 'DFS', status: 'Active', lastActive: '1 hr ago' },
+    { id: 'USR-004', name: 'Elena Rossi', username: 'erossi_it', email: 'e.rossi@vault.com', role: 'USER_CHECKER', branch: 'DFS', status: 'Active', lastActive: '5 mins ago' },
+    { id: 'USR-005', name: 'James Wilson', username: 'jwilson_bm', email: 'j.wilson@vault.com', role: 'BRANCH_MAKER', branch: 'DFS', status: 'Suspended', lastActive: '3 days ago' },
+    { id: 'USR-006', name: 'Emily Davis', username: 'edavis_ops', email: 'e.davis@vault.com', role: 'BRANCH_CHECKER', branch: 'DFS', status: 'Active', lastActive: '2 hrs ago' },
+    { id: 'USR-007', name: 'David Kim', username: 'dkim_sv', email: 'd.kim@vault.com', role: 'BRANCH_MAKER', branch: 'DFS', status: 'Pending Approval', lastActive: 'Never' },
+    { id: 'USR-008', name: 'Sophia Martinez', username: 'smartinez', email: 's.martinez@vault.com', role: 'USER_MAKER', branch: 'DFS', status: 'Active', lastActive: '1 day ago' }
   ];
 
   get filteredUsers(): PortalUser[] {
@@ -49,10 +49,10 @@ export class UserListComponent {
 
       // Search Filter Check
       const term = this.searchTerm.toLowerCase();
-      const matchesSearch = term === '' || 
-                            user.name.toLowerCase().includes(term) ||
-                            user.email.toLowerCase().includes(term) ||
-                            user.username.toLowerCase().includes(term);
+      const matchesSearch = term === '' ||
+        user.name.toLowerCase().includes(term) ||
+        user.email.toLowerCase().includes(term) ||
+        user.username.toLowerCase().includes(term);
 
       return matchesTab && matchesSearch;
     });
@@ -124,7 +124,7 @@ export class UserListComponent {
   }
 
   getRoleColorClass(role: string): string {
-    switch(role) {
+    switch (role) {
       case 'USER_CHECKER': return 'bg-error-container text-on-error-container border-error-container';
       case 'BRANCH_CHECKER': return 'bg-tertiary-container text-on-tertiary-container border-tertiary-container';
       case 'BRANCH_MAKER': return 'bg-primary-container text-on-primary-container border-primary-container';
@@ -134,7 +134,7 @@ export class UserListComponent {
   }
 
   getStatusIcon(status: string): string {
-    switch(status) {
+    switch (status) {
       case 'Active': return 'check_circle';
       case 'Pending Approval': return 'schedule';
       case 'Suspended': return 'block';
@@ -143,7 +143,7 @@ export class UserListComponent {
   }
 
   getStatusColorClass(status: string): string {
-    switch(status) {
+    switch (status) {
       case 'Active': return 'text-primary bg-primary/10';
       case 'Pending Approval': return 'text-tertiary bg-tertiary/10';
       case 'Suspended': return 'text-error bg-error/10';

@@ -36,6 +36,16 @@ export interface Director {
   isPrimary: boolean;
 }
 
+interface BusinessSubCategory {
+  name: string;
+  mcc: string;
+}
+
+interface BusinessCategory {
+  name: string;
+  subcategories: BusinessSubCategory[];
+}
+
 @Component({
   selector: 'app-org-onboarding',
   standalone: true,
@@ -43,47 +53,47 @@ export interface Director {
   templateUrl: './org-onboarding.html',
 })
 export class OrgOnboardingComponent {
-  currentStep = 6; // Default to 6
+  currentStep = 1; // Default to 6
   steps = [1, 2, 3, 4, 5, 6];
-  searchType: 'account' | 'paybill' | 'registration' | 'phone' = 'phone';
+  searchType: 'account' = 'account';
 
   mockCustomerInfo: CustomerData = {
-    customerName: "BARABWIRIZA APOLLINAIRE",
+    customerName: "John Doe",
     customerDateOfBirth: "1970-01-01",
     customerMobileNo: "25776835442, 22254851, 78835442",
     customerEmail: "Not Provided",
     customerLegalId: "0201102971",
     customerLegalDocName: "NATIONAL.ID",
     customerDao: "4750",
-    customerTown: "BUJUMBURA",
+    customerTown: "Dodoma",
     customerStreet: "KIBENGA RURAL, No 3",
-    customerNo: "3188384",
+    customerNo: "31883845",
     customerRiskClassification: "HIGH",
     accounts: [
       {
-        accountNumber: "6691127447",
-        accountTitle: "BARABWIRIZA APOLLINAIRE",
-        currency: "BIF",
+        accountNumber: "8991127447",
+        accountTitle: "John Doe",
+        currency: "TZS",
         alternateAccountNumber: ""
       },
       {
-        accountNumber: "6600000368",
-        accountTitle: "BARABWIRIZA APOLLINAIRE",
-        currency: "BIF",
+        accountNumber: "8600000368",
+        accountTitle: "John Doe",
+        currency: "TZS",
         alternateAccountNumber: ""
       }
     ]
   };
 
-  selectedAccount: string = "6600000368";
+  selectedAccount: string = "8600000368";
 
   // Step 3: Directors State
   directors: Director[] = [
     {
       id: "DIR-001",
-      fullName: "BARABWIRIZA APOLLINAIRE",
+      fullName: "John Doe",
       idNumber: "0201102971",
-      nationality: "Kenyan",
+      nationality: "Tanzanian",
       kraPin: "A001234567Z",
       phoneNumber: "25776835442",
       email: "b.apollinaire@example.com",
@@ -92,9 +102,46 @@ export class OrgOnboardingComponent {
     }
   ];
 
+  businessCategories: BusinessCategory[] = [
+    {
+      name: 'Retail',
+      subcategories: [
+        { name: 'Grocery Stores', mcc: '5411' },
+        { name: 'Clothing Stores', mcc: '5651' },
+        { name: 'Electronics Stores', mcc: '5732' }
+      ]
+    },
+    {
+      name: 'Hospitality',
+      subcategories: [
+        { name: 'Hotels', mcc: '7011' },
+        { name: 'Restaurants', mcc: '5812' },
+        { name: 'Fast Food', mcc: '5814' }
+      ]
+    },
+    {
+      name: 'Transport',
+      subcategories: [
+        { name: 'Taxi Services', mcc: '4121' },
+        { name: 'Airlines', mcc: '4511' },
+        { name: 'Bus Lines', mcc: '4131' }
+      ]
+    },
+    {
+      name: 'Professional Services',
+      subcategories: [
+        { name: 'Legal Services', mcc: '8111' },
+        { name: 'Accounting', mcc: '8931' },
+        { name: 'Consulting', mcc: '7392' }
+      ]
+    }
+  ];
+
   showDirectorForm: boolean = false;
   editingDirector: Director | null = null;
   newDirector: Director = this.getEmptyDirector();
+
+
 
   // Step 4: Communication & Settings State
   orgShortCode: string = '';
@@ -116,8 +163,22 @@ export class OrgOnboardingComponent {
   tillBankAccount: string = '';
   tillCommissionAccount: string = '';
 
+  selectedCategory: string = '';
+  selectedSubCategory: string = '';
+  selectedMcc: string = '';
+
+  get subCategories(): BusinessSubCategory[] {
+    const category = this.businessCategories.find(c => c.name === this.selectedCategory);
+    return category ? category.subcategories : [];
+  }
+
+  onSubCategoryChange() {
+    const sub = this.subCategories.find(s => s.name === this.selectedSubCategory);
+    this.selectedMcc = sub ? sub.mcc : '';
+  }
+
   get progressPercentage(): number {
-    return (this.currentStep / this.steps.length) * 100;
+    return Math.round((this.currentStep / this.steps.length) * 100);
   }
 
   get stepTitle(): string {
