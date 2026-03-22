@@ -45,6 +45,17 @@
               class="w-full bg-surface border border-outline-variant/60 rounded-lg px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-outline/50"
               placeholder="+1 (555) 000-0000" />
           </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-bold text-on-surface-variant">Branch</label>
+            <select [(ngModel)]="branch" name="branch"
+              class="w-full bg-surface border border-outline-variant/60 rounded-lg px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+              <option value="" disabled selected>Select Branch</option>
+              <option value="HQ">Headquarters (HQ)</option>
+              <option value="DFS">Direct Sales (DFS)</option>
+              <option value="Retail">Retail Banking</option>
+              <option value="Corporate">Corporate Banking</option>
+            </select>
+          </div>
         </div>
 
         <div class="h-px w-full bg-surface-variant/40"></div>

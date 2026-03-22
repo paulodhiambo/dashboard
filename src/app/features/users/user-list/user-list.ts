@@ -100,7 +100,50 @@ export class UserListComponent {
   // --- Approval Action Panel Methods ---
 
   selectedUserForAction: PortalUser | null = null;
+  selectedUserForEdit: PortalUser | null = null;
+  editForm: any = {};
+  
+  showSuspendDialog: boolean = false;
+  suspendTarget: PortalUser | null = null;
+  
   actionReason: string = '';
+
+  openEditPanel(user: PortalUser) {
+    this.selectedUserForEdit = user;
+    this.editForm = { ...user };
+  }
+
+  closeEditPanel() {
+    this.selectedUserForEdit = null;
+    this.editForm = {};
+  }
+
+  saveEdit() {
+    if (this.selectedUserForEdit) {
+      const index = this.users.findIndex(u => u.id === this.selectedUserForEdit?.id);
+      if (index !== -1) {
+        this.users[index] = { ...this.editForm };
+      }
+      this.closeEditPanel();
+    }
+  }
+
+  openSuspendDialog(user: PortalUser) {
+    this.suspendTarget = user;
+    this.showSuspendDialog = true;
+  }
+
+  closeSuspendDialog() {
+    this.showSuspendDialog = false;
+    this.suspendTarget = null;
+  }
+
+  confirmSuspend() {
+    if (this.suspendTarget) {
+      this.suspendTarget.status = 'Suspended';
+      this.closeSuspendDialog();
+    }
+  }
 
   openActionPanel(user: PortalUser) {
     this.selectedUserForAction = user;
