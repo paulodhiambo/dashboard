@@ -1,0 +1,56 @@
+<main class="min-h-screen flex flex-col justify-center items-center relative overflow-hidden login-bg">
+
+  <!-- Overlay -->
+  <div class="bg-overlay"></div>
+
+  <!-- Content -->
+  <section class="flex-grow flex items-center justify-center w-full px-4 relative z-10 fade-in-up">
+
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-10 md:p-12 text-center relative overflow-hidden group">
+      
+      <!-- Subtle top border accent to complement the radius -->
+      <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#8cc63f] to-[#003e48]"></div>
+
+      <!-- Logo -->
+      <div class="mb-8 flex justify-center">
+        <img
+          src="https://lh3.googleusercontent.com/aida/ADBb0uj_ozzvwlmB5HfgSNJae4z0bifTW6obB6y3GqsPKZ_YISpDecy7IY2cKeRuBypuq8KsiJWpLaQK7W5McWhGynJR83ZkzSMwPoQik3f0ujjVLRnh_F9t3O8a3T2hA9cth3wlby02ptExsNlUSCBWoeM91IwY_eTgeZPe_XB_IA5AigKWdSklNx-ckfX2vesVnlp8Ppm0gJxxfVDzuT7kiGdSAFz-mOUz2zJ1ZKWX5kufyJFb55shZ-BvXKYd-k8ixqif3rQwCM8sDKo"
+          alt="KCB Bank Logo" class="h-16 w-auto object-contain" style="max-width: 300px;" />
+      </div>
+
+      <!-- Welcome Text -->
+      <h1 class="text-gray-900 font-bold text-lg leading-relaxed mb-10 font-[Manrope]">
+        Welcome to the KCB Merchant's Portal.
+      </h1>
+
+      <!-- Action -->
+      <div class="space-y-4">
+        <button type="button" (click)="signIn()"
+          class="w-full bg-[#8cc63f] hover:bg-[#7db238] text-white font-bold py-3 px-6 rounded-sm transition-colors duration-200 text-sm uppercase tracking-wide">
+          Sign In
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="w-full py-8 px-6 relative z-10 fade-in">
+    <div
+      class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-white/80 text-xs font-[Manrope]">
+
+      <div>
+        2026 © KCB Group. All Rights Reserved.
+      </div>
+
+      <nav class="flex items-center space-x-4">
+        <a class="hover:underline cursor-pointer">Terms & Conditions</a>
+        <span class="opacity-40">|</span>
+        <a class="hover:underline cursor-pointer">Privacy Policy</a>
+      </nav>
+
+    </div>
+  </footer>
+
+</main>

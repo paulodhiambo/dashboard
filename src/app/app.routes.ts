@@ -3,14 +3,18 @@ import { ShellComponent } from './core/layout/shell/shell.component';
 
 export const routes: Routes = [
   {
+    path: 'login',
+    loadComponent: () => import('./features/auth/login/login').then(c => c.Login)
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
     path: '',
     component: ShellComponent,
     children: [
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-      },
       {
         path: 'dashboard',
         loadComponent: () => import('./features/dashboard/dashboard').then(c => c.Dashboard)
