@@ -44,6 +44,14 @@ export const routes: Routes = [
         loadComponent: () => import('./features/till-management/till-management/till-management').then(c => c.TillManagement)
       },
       {
+        path: 'tills/review/:id',
+        loadComponent: () => import('./features/till-management/till-review/till-review').then(c => c.TillReviewComponent)
+      },
+      {
+        path: 'tills/reserve',
+        loadComponent: () => import('./features/till-management/reserve-till/reserve-till').then(c => c.ReserveTillComponent)
+      },
+      {
         path: 'users',
         loadComponent: () => import('./features/users/user-list/user-list').then(c => c.UserListComponent)
       },

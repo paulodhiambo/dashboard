@@ -319,3 +319,47 @@
   </div>
 </div>
 }
+
+<!-- Action Confirmation Slider Overlay -->
+@if (isActionPanelOpen) {
+<div class="fixed inset-0 bg-slate-900/10 backdrop-blur-sm z-40 transition-opacity" (click)="isActionPanelOpen = false"></div>
+
+<div class="fixed right-0 top-0 bottom-0 w-full md:w-[450px] bg-surface-container-lowest z-50 shadow-2xl flex flex-col transform transition-transform duration-300 border-l border-outline-variant slide-in-right">
+  
+  <div class="p-6 border-b border-outline-variant bg-[#002C4D] text-white flex items-center justify-between shadow-sm">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-[24px]">
+        {{ actionPayload.action === 'suspend' ? 'pause_circle' : (actionPayload.action === 'unsuspend' ? 'play_circle' : 'cancel') }}
+      </span>
+      <div>
+        <h2 class="text-xl font-extrabold font-headline capitalize">{{ actionPayload.action }} Action Capture</h2>
+        <p class="text-xs text-white/90 font-medium tracking-wide mt-0.5">Mandatory remarks required for execution</p>
+      </div>
+    </div>
+    <button (click)="isActionPanelOpen = false" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors">
+      <span class="material-symbols-outlined text-[20px]">close</span>
+    </button>
+  </div>
+
+  <div class="flex-1 p-6 overflow-y-auto space-y-6">
+    <div class="bg-surface border border-outline-variant rounded-xl p-4 shadow-sm text-sm text-on-surface-variant leading-relaxed">
+      You are about to execute a <strong class="text-on-surface capitalize">{{ actionPayload.action }}</strong> request for 
+      <span class="font-bold text-on-surface">{{ actionPayload.type === 'organization' ? 'the organization' : 'till [' + actionPayload.tillNumber + ']' }}</span>.
+      This will update the operational status on the network.
+    </div>
+
+    <div>
+      <label class="block text-xs font-bold text-outline uppercase tracking-widest mb-1.5">Action Remarks / Reason</label>
+      <textarea [(ngModel)]="actionPayload.reason" rows="4" class="w-full px-4 py-3 border border-outline-variant rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all shadow-sm bg-surface-container-lowest resize-none" placeholder="Provide justification for this action..."></textarea>
+    </div>
+  </div>
+
+  <div class="p-6 border-t border-outline-variant bg-surface-container-low/30 flex gap-3">
+    <button (click)="isActionPanelOpen = false" class="flex-1 px-4 py-3.5 font-bold text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded-xl transition-colors">Cancel</button>
+    <button (click)="confirmAction()" [disabled]="!actionPayload.reason.trim()" class="flex-1 px-4 py-3.5 text-white font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5"
+            [ngClass]="actionPayload.action === 'unsuspend' ? 'bg-[#84BD00]' : (actionPayload.action === 'suspend' ? 'bg-orange-600' : 'bg-red-600')">
+      Confirm & Execute
+    </button>
+  </div>
+</div>
+}
