@@ -330,9 +330,9 @@
           </li>
         </ul>
       </div>
-      <div
-        class="p-4 text-center border-t border-outline-variant bg-surface-container-low/30 hover:bg-surface-container-low transition-colors cursor-pointer">
-        <span class="text-xs font-bold text-primary">View Full Leaderboard</span>
+      <div routerLink="/dashboard/leaderboard"
+        class="p-4 text-center border-t border-outline-variant bg-surface-container-low/30 hover:bg-surface-container-low transition-colors cursor-pointer group/footer">
+        <span class="text-xs font-bold text-primary group-hover/footer:underline">View Full Leaderboard</span>
       </div>
     </div>
   </div>
@@ -345,7 +345,7 @@
         <h3 class="text-lg font-bold text-on-surface mb-1">Recent Activity</h3>
         <p class="text-xs text-on-surface-variant font-medium">Latest actions across all modules</p>
       </div>
-      <button
+      <button routerLink="/dashboard/logs"
         class="px-4 py-2 bg-white border border-outline-variant rounded-lg text-sm font-bold text-primary hover:bg-surface-container transition-colors shadow-sm">
         View All Logs
       </button>

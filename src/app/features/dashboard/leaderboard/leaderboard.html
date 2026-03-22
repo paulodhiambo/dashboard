@@ -1,0 +1,126 @@
+<div class="px-6 py-8 pb-12 max-w-[1200px] mx-auto space-y-8 fade-in">
+  
+  <!-- Header Section -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div class="flex items-center gap-4">
+      <button (click)="goBack()" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-low transition-colors text-outline">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <div>
+        <h2 class="text-3xl font-extrabold font-headline text-on-surface tracking-tight mb-1">Organization Leaderboard</h2>
+        <p class="text-sm font-medium text-on-surface-variant">Real-time performance ranking by transaction volume and till density</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaderboard Table Card -->
+  <div class="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant flex flex-col overflow-hidden">
+    <div class="p-5 border-b border-outline-variant bg-surface-container-low/30 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary">military_tech</span>
+        <span class="text-sm font-black text-on-surface uppercase tracking-widest">Performance Ranking</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold text-on-surface-variant">Sorting by:</span>
+        <select class="bg-white border border-outline-variant rounded-lg px-3 py-1.5 text-xs font-bold text-primary focus:outline-none focus:ring-1 focus:ring-primary shadow-sm appearance-none cursor-pointer">
+          <option>Transaction Volume</option>
+          <option>Till Count</option>
+          <option>Growth Rate</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-slate-50 border-b border-outline-variant">
+            <th class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest w-16">Rank</th>
+            <th class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest">Organization</th>
+            <th class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest">Tills / Branches</th>
+            <th class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest">Volume (MTD)</th>
+            <th class="px-6 py-4 text-[11px] font-black text-on-surface-variant uppercase tracking-widest text-right">Trend</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-outline-variant">
+          @for (item of leaderboardData; track item.rank) {
+          <tr class="hover:bg-primary/5 transition-colors group">
+            <td class="px-6 py-4">
+              <div class="flex items-center justify-center w-8 h-8 rounded-full font-black text-sm"
+                   [ngClass]="item.rank <= 3 ? 'bg-primary/10 text-primary border border-primary/20' : 'bg-surface-container text-on-surface-variant'">
+                {{ item.rank }}
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-4">
+                <div [ngClass]="item.colorClass"
+                     class="w-10 h-10 rounded-full text-white flex items-center justify-center font-bold font-headline text-sm shadow-sm group-hover:scale-105 transition-transform">
+                  {{ item.initials }}
+                </div>
+                <div>
+                  <h4 class="font-bold text-on-surface text-sm">{{ item.name }}</h4>
+                  <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">Gold Tier Merchant</p>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex flex-col">
+                <span class="text-sm font-bold text-on-surface">{{ item.tills }} Tills</span>
+                <span class="text-xs text-on-surface-variant">{{ item.branches }} Active Branches</span>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <span class="text-sm font-black font-mono text-on-surface">{{ item.volume }}</span>
+            </td>
+            <td class="px-6 py-4 text-right">
+              <div class="flex items-center justify-end gap-1 font-bold text-xs"
+                   [ngClass]="item.isUp ? 'text-primary' : 'text-error'">
+                <span class="material-symbols-outlined text-[16px]">
+                  {{ item.isUp ? 'trending_up' : 'trending_down' }}
+                </span>
+                {{ item.trend }}
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Simple Pagination -->
+    <div class="p-4 bg-slate-50 border-t border-outline-variant flex items-center justify-between">
+      <span class="text-xs font-bold text-outline">
+        Showing {{ (currentPage - 1) * pageSize + 1 }}-{{ Math.min(currentPage * pageSize, totalEntries) | number }} of {{ totalEntries | number }} entries
+      </span>
+      <div class="flex items-center gap-1">
+        <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"
+                class="w-8 h-8 flex items-center justify-center rounded-lg bg-white border border-outline-variant text-outline hover:text-primary transition-all disabled:opacity-50">
+          <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+        </button>
+        
+        @for (p of [1, 2, 3]; track p) {
+          <button (click)="changePage(p)"
+                  [ngClass]="currentPage === p ? 'bg-primary text-white shadow-sm' : 'bg-white border border-outline-variant text-on-surface hover:bg-surface-container'"
+                  class="w-8 h-8 flex items-center justify-center rounded-lg font-bold text-xs transition-all">
+            {{ p }}
+          </button>
+        }
+        
+        <span class="px-1 text-outline">...</span>
+        
+        <button (click)="changePage(currentPage + 1)" [disabled]="currentPage * pageSize >= totalEntries"
+                class="w-8 h-8 flex items-center justify-center rounded-lg bg-white border border-outline-variant text-outline hover:text-primary transition-all">
+          <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

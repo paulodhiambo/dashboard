@@ -555,12 +555,18 @@
                   </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
-                  <div>
+                  <div class="flex-grow">
                     <label class="block text-xs font-bold text-on-surface-variant mb-2">Business Name</label>
                     <input type="text" [(ngModel)]="businessName"
                       class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 font-bold focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                       placeholder="Enter Business Name">
                   </div>
+                  @if (selectedMcc) {
+                  <div class="p-4 rounded-xl bg-primary/5 border border-primary/20 animate-in fade-in zoom-in duration-300">
+                    <label class="block text-[10px] font-bold text-primary uppercase tracking-widest mb-1">Merchant Category Code (MCC)</label>
+                    <p class="text-xl font-black font-mono text-primary">{{ selectedMcc }}</p>
+                  </div>
+                  }
                 </div>
               </div>
 

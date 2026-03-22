@@ -20,6 +20,14 @@ export const routes: Routes = [
         loadComponent: () => import('./features/dashboard/dashboard').then(c => c.Dashboard)
       },
       {
+        path: 'dashboard/leaderboard',
+        loadComponent: () => import('./features/dashboard/leaderboard/leaderboard').then(c => c.LeaderboardComponent)
+      },
+      {
+        path: 'dashboard/logs',
+        loadComponent: () => import('./features/dashboard/logs/logs').then(c => c.LogsComponent)
+      },
+      {
         path: 'organizations',
         loadComponent: () => import('./features/organizations/org-list/org-list').then(c => c.OrgListComponent)
       },
@@ -50,6 +58,10 @@ export const routes: Routes = [
       {
         path: 'tills/reserve',
         loadComponent: () => import('./features/till-management/reserve-till/reserve-till').then(c => c.ReserveTillComponent)
+      },
+      {
+        path: 'tills/allocate',
+        loadComponent: () => import('./features/till-management/allocate-till/allocate-till').then(c => c.AllocateTillComponent)
       },
       {
         path: 'users',
