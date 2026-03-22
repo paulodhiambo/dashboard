@@ -7,7 +7,13 @@
     box-sizing: border-box;
   }
 
-  html, body {
+  html,
+
+  html {
+    font-size: 85%;
+  }
+
+  body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -23,6 +29,7 @@
 }
 
 @layer components {
+
   /* Material Symbols icon style */
   .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -45,7 +52,7 @@
 
   /* Tonal layering utility */
   .tonal-layering-no-border {
-    background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.02));
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.02));
   }
 
   /* Active nav item */
@@ -69,6 +76,11 @@
 }
 
 @layer utilities {
-  .font-headline { font-family: 'Manrope', sans-serif; }
-  .font-body { font-family: 'Inter', sans-serif; }
+  .font-headline {
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
 }
