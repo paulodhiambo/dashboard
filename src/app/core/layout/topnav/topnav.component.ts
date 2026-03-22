@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
         <div class="relative w-80">
           <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/50 text-lg">search</span>
           <input
-            class="w-full bg-white/10 border-none rounded-lg pl-10 pr-4 py-2 text-sm text-white placeholder-white/50 focus:ring-2 focus:ring-[#8cc63f] focus:bg-white/20 focus:outline-none transition-colors"
+            class="w-full bg-white/10 border-none rounded-lg pl-10 pr-4 py-2 text-sm text-white placeholder-white/50 focus:ring-2 focus:ring-[#84BD00] focus:bg-white/20 focus:outline-none transition-colors"
             placeholder="Search portal..."
             type="text"
           />
@@ -22,7 +22,7 @@ import { Component } from '@angular/core';
         <div class="flex items-center space-x-3">
           <button class="relative text-white/80 hover:text-white transition-colors p-1.5 rounded-full hover:bg-white/10" title="Notifications">
             <span class="material-symbols-outlined">notifications</span>
-            <span class="absolute top-1 right-1 w-2 h-2 bg-[#8cc63f] rounded-full"></span>
+            <span class="absolute top-1 right-1 w-2 h-2 bg-[#84BD00] rounded-full"></span>
           </button>
           <button class="text-white/80 hover:text-white transition-colors p-1.5 rounded-full hover:bg-white/10" title="Help">
             <span class="material-symbols-outlined">help_outline</span>

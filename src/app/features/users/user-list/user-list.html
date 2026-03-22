@@ -274,10 +274,9 @@
   </div>
   <!-- Action Side Panel Overlay -->
   @if (selectedUserForAction) {
-  <div class="fixed inset-0 bg-on-surface/20 z-40 backdrop-blur-sm transition-opacity"></div>
-
+  <div class="fixed inset-0 bg-slate-900/10 z-40 backdrop-blur-sm transition-opacity"></div>
   <div
-    class="fixed top-0 right-0 h-full w-full max-w-md bg-surface shadow-2xl z-50 flex flex-col transform transition-transform duration-300 border-l border-outline-variant animate-slide-in-right">
+    class="fixed top-0 right-0 h-full w-full max-w-md bg-surface shadow-xl z-50 flex flex-col transform transition-transform duration-300 border-l border-slate-200/50 animate-slide-in-right">
     <!-- Header -->
     <div class="p-6 border-b border-outline-variant flex items-center justify-between bg-surface-container-lowest">
       <div class="flex items-center gap-3">
@@ -302,7 +301,7 @@
       <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-sm">
         <div class="flex items-center gap-4 mb-4">
           <div
-            class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg shadow-inner">
+            class="w-12 h-12 rounded-full bg-primary-container text-green-900 flex items-center justify-center font-bold text-lg shadow-inner">
             {{ selectedUserForAction.name.charAt(0) }}
           </div>
           <div>

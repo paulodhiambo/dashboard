@@ -127,7 +127,7 @@ export class UserListComponent {
     switch (role) {
       case 'USER_CHECKER': return 'bg-error-container text-on-error-container border-error-container';
       case 'BRANCH_CHECKER': return 'bg-tertiary-container text-on-tertiary-container border-tertiary-container';
-      case 'BRANCH_MAKER': return 'bg-primary-container text-on-primary-container border-primary-container';
+      case 'BRANCH_MAKER': return 'bg-primary-container text-green-900 border-primary-container';
       case 'USER_MAKER': return 'bg-secondary-container text-on-secondary-container border-secondary-container';
       default: return 'bg-surface text-on-surface border-outline';
     }
@@ -144,7 +144,7 @@ export class UserListComponent {
 
   getStatusColorClass(status: string): string {
     switch (status) {
-      case 'Active': return 'text-primary bg-primary/10';
+      case 'Active': return 'text-green-900 bg-primary/10';
       case 'Pending Approval': return 'text-tertiary bg-tertiary/10';
       case 'Suspended': return 'text-error bg-error/10';
       default: return 'text-outline bg-surface-variant';

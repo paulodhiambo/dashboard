@@ -28,8 +28,16 @@ export const routes: Routes = [
         loadComponent: () => import('./features/organizations/org-onboarding/org-onboarding').then(c => c.OrgOnboardingComponent)
       },
       {
+        path: 'organizations/search',
+        loadComponent: () => import('./features/organizations/org-search/org-search').then(c => c.OrgSearchComponent)
+      },
+      {
         path: 'organizations/detail/:code',
         loadComponent: () => import('./features/organizations/org-detail/org-detail').then(c => c.OrgDetailComponent)
+      },
+      {
+        path: 'organizations/review/:id',
+        loadComponent: () => import('./features/organizations/org-review/org-review').then(c => c.OrgReviewComponent)
       },
       {
         path: 'tills',
@@ -42,14 +50,6 @@ export const routes: Routes = [
       {
         path: 'users/add',
         loadComponent: () => import('./features/users/user-add/user-add').then(c => c.UserAdd)
-      },
-      {
-        path: 'approvals',
-        loadComponent: () => import('./features/approvals/approval-list/approval-list').then(c => c.ApprovalList)
-      },
-      {
-        path: 'approvals/:id',
-        loadComponent: () => import('./features/approvals/approval-detail/approval-detail').then(c => c.ApprovalDetail)
       },
       {
         path: 'products',

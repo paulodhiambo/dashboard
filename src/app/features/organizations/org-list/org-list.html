@@ -7,16 +7,24 @@
       <p class="text-on-surface-variant font-medium max-w-2xl">Manage registered merchants, monitor onboarding status.
       </p>
     </div>
-    <button routerLink="new"
-      class="bg-primary text-white px-6 py-3 rounded-xl font-bold flex items-center shadow-md hover:shadow-lg hover:bg-green-800 hover:-translate-y-0.5 transition-all group">
-      <span
-        class="material-symbols-outlined text-[20px] mr-2 group-hover:rotate-90 transition-transform">add_business</span>
-      <span>Onboard Organization</span>
-    </button>
+    <div class="flex items-center gap-3">
+      <button routerLink="search"
+        class="bg-white text-on-surface border border-outline-variant px-5 py-3 rounded-xl font-bold flex items-center shadow-sm hover:shadow-md hover:bg-surface-container-low hover:-translate-y-0.5 transition-all group">
+        <span
+          class="material-symbols-outlined text-[20px] mr-2 text-outline group-hover:text-primary transition-colors">search</span>
+        <span>Search Organization</span>
+      </button>
+      <button routerLink="new"
+        class="bg-primary text-white px-6 py-3 rounded-xl font-bold flex items-center shadow-md hover:shadow-lg hover:bg-green-800 hover:-translate-y-0.5 transition-all group">
+        <span
+          class="material-symbols-outlined text-[20px] mr-2 group-hover:rotate-90 transition-transform">add_business</span>
+        <span>Onboard Organization</span>
+      </button>
+    </div>
   </div>
 
   <!-- KPI Bento Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
     <div
       class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-5 shadow-sm flex items-center gap-4">
       <div class="w-12 h-12 rounded-xl bg-primary-container text-primary flex items-center justify-center">
@@ -33,8 +41,8 @@
         <span class="material-symbols-outlined text-[24px]">verified</span>
       </div>
       <div>
-        <p class="text-[10px] font-bold text-outline uppercase tracking-widest">Active</p>
-        <h3 class="text-2xl font-extrabold font-headline text-on-surface">{{ activeOrgs }}</h3>
+        <p class="text-[10px] font-bold text-outline uppercase tracking-widest">Approved</p>
+        <h3 class="text-2xl font-extrabold font-headline text-on-surface">{{ approvedOrgs }}</h3>
       </div>
     </div>
     <div
@@ -49,12 +57,22 @@
     </div>
     <div
       class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-5 shadow-sm flex items-center gap-4">
+      <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center">
+        <span class="material-symbols-outlined text-[24px]">pending_actions</span>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold text-outline uppercase tracking-widest">Under Review</p>
+        <h3 class="text-2xl font-extrabold font-headline text-on-surface">{{ underReviewOrgs }}</h3>
+      </div>
+    </div>
+    <div
+      class="bg-surface-container-lowest border border-outline-variant rounded-2xl p-5 shadow-sm flex items-center gap-4">
       <div class="w-12 h-12 rounded-xl bg-red-100 text-red-700 flex items-center justify-center">
         <span class="material-symbols-outlined text-[24px]">block</span>
       </div>
       <div>
-        <p class="text-[10px] font-bold text-outline uppercase tracking-widest">Suspended</p>
-        <h3 class="text-2xl font-extrabold font-headline text-on-surface">{{ suspendedOrgs }}</h3>
+        <p class="text-[10px] font-bold text-outline uppercase tracking-widest">Rejected</p>
+        <h3 class="text-2xl font-extrabold font-headline text-on-surface">{{ rejectedOrgs }}</h3>
       </div>
     </div>
   </div>
@@ -72,9 +90,9 @@
         <button (click)="setTab('All')"
           [ngClass]="activeTab === 'All' ? 'bg-white text-primary shadow-sm font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 font-semibold'"
           class="px-4 py-1.5 text-sm rounded-md transition-all">All Orgs</button>
-        <button (click)="setTab('Active')"
-          [ngClass]="activeTab === 'Active' ? 'bg-white text-primary shadow-sm font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 font-semibold'"
-          class="px-4 py-1.5 text-sm rounded-md transition-all">Active</button>
+        <button (click)="setTab('Approved')"
+          [ngClass]="activeTab === 'Approved' ? 'bg-white text-primary shadow-sm font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 font-semibold'"
+          class="px-4 py-1.5 text-sm rounded-md transition-all">Approved</button>
         <button (click)="setTab('Pending Review')"
           [ngClass]="activeTab === 'Pending Review' ? 'bg-white text-primary shadow-sm font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 font-semibold'"
           class="px-4 py-1.5 text-sm rounded-md transition-all flex items-center gap-1">
@@ -86,9 +104,12 @@
           </span>
           }
         </button>
-        <button (click)="setTab('Suspended')"
-          [ngClass]="activeTab === 'Suspended' ? 'bg-white text-primary shadow-sm font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 font-semibold'"
-          class="px-4 py-1.5 text-sm rounded-md transition-all">Suspended</button>
+        <button (click)="setTab('Under Review')"
+          [ngClass]="activeTab === 'Under Review' ? 'bg-white text-primary shadow-sm font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 font-semibold'"
+          class="px-4 py-1.5 text-sm rounded-md transition-all">Under Review</button>
+        <button (click)="setTab('Rejected')"
+          [ngClass]="activeTab === 'Rejected' ? 'bg-white text-primary shadow-sm font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/30 font-semibold'"
+          class="px-4 py-1.5 text-sm rounded-md transition-all">Rejected</button>
       </div>
 
       <!-- Search & Actions -->
@@ -192,21 +213,12 @@
 
             <!-- Actions -->
             <td class="px-6 py-4 whitespace-nowrap text-right">
-              <div class="flex justify-end items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button
-                  class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-primary/10 text-outline hover:text-primary transition-colors"
-                  title="View Details">
-                  <span class="material-symbols-outlined text-[18px]">visibility</span>
-                </button>
-                <button
-                  class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-primary/10 text-outline hover:text-primary transition-colors"
-                  title="Edit Organization">
-                  <span class="material-symbols-outlined text-[18px]">edit</span>
-                </button>
-                <button
-                  class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-error/10 text-outline hover:text-error transition-colors"
-                  title="More Options">
-                  <span class="material-symbols-outlined text-[18px]">more_vert</span>
+              <div class="flex justify-end items-center gap-3">
+                <!-- Always Visible Review Button -->
+                <button [routerLink]="['/organizations/review', org.id]"
+                  class="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#84BD00]/10 border border-[#84BD00]/20 hover:bg-[#84BD00] hover:border-[#84BD00] text-[#002C4D] hover:text-white transition-colors font-bold text-xs shadow-sm"
+                  title="Review Organization">
+                  <span class="material-symbols-outlined text-[16px]">fact_check</span> Review
                 </button>
               </div>
             </td>

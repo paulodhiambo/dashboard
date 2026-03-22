@@ -23,7 +23,7 @@ interface NavItem {
         @for (item of navItems; track item.route) {
           <a
             [routerLink]="item.route"
-            routerLinkActive="bg-white/10 text-white font-bold border-l-4 border-[#8cc63f]"
+            routerLinkActive="bg-white/10 text-white font-bold border-l-4 border-[#84BD00]"
             [routerLinkActiveOptions]="{ exact: item.route === '/dashboard' }"
             class="flex items-center px-4 py-3 text-white/70 hover:text-white hover:bg-white/5 transition-all duration-200 group"
           >
@@ -36,14 +36,14 @@ interface NavItem {
       <!-- User Profile -->
       <div class="p-4 border-t border-white/10">
         <div class="flex items-center space-x-3 p-3 rounded-lg bg-white/5">
-          <div class="w-9 h-9 rounded-full bg-[#8cc63f] flex items-center justify-center text-[#002C4D] font-bold text-sm flex-shrink-0">
+          <div class="w-9 h-9 rounded-full bg-[#84BD00] flex items-center justify-center text-[#002C4D] font-bold text-sm flex-shrink-0">
             <span class="material-symbols-outlined text-base">person</span>
           </div>
           <div class="overflow-hidden">
             <p class="text-xs font-bold truncate text-white">Admin User</p>
             <p class="text-[10px] text-white/50 truncate">Master Authority</p>
           </div>
-          <button class="ml-auto text-white/40 hover:text-[#8cc63f] transition-colors" title="Logout">
+          <button class="ml-auto text-white/40 hover:text-[#84BD00] transition-colors" title="Logout">
             <span class="material-symbols-outlined text-base">logout</span>
           </button>
         </div>
@@ -57,7 +57,6 @@ export class SidenavComponent {
     { label: 'Organizations', icon: 'corporate_fare', route: '/organizations' },
     { label: 'Till Management', icon: 'point_of_sale', route: '/tills' },
     { label: 'Users', icon: 'group', route: '/users' },
-    { label: 'Service Requests', icon: 'rule_folder', route: '/approvals' },
     { label: 'Products & Charges', icon: 'inventory_2', route: '/products' }
   ];
 }
